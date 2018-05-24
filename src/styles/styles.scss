@@ -1,0 +1,47 @@
+.assign-pro {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.table.is-hoverable tbody tr:not(.is-selected):hover {
+    cursor: pointer;
+}
+
+.b-checkbox.checkbox.is-hot-checkbox {
+    border-radius: 1px;
+    font-size: 0.7rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.mdi-loading {
+    animation: spinAround 500ms infinite linear;
+}
+
+.corner-cell {
+    font-size: 0.6rem;
+    position: relative;
+    height: 100%;
+    width: 100px;
+    text-transform: uppercase;
+
+    span {
+        position: absolute;
+    }
+
+    .workers {
+        left: 0.1rem;
+        bottom: -0.3rem
+    }
+
+    .tasks {
+        top: -0.3rem;
+        right: 0.1rem
+    }
+}

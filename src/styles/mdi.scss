@@ -1,0 +1,16 @@
+@import '~mdi/scss/variables';
+@import '~mdi/scss/functions';
+
+$mdi-font-path: '~mdi/fonts';
+@font-face {
+    font-family: '#{$mdi-font-name}';
+    src: url('#{$mdi-font-path}/#{$mdi-filename}-webfont.woff2?v=#{$mdi-version}') format('woff2'),
+    url('#{$mdi-font-path}/#{$mdi-filename}-webfont.woff?v=#{$mdi-version}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import '~mdi/scss/core';
+@import '~mdi/scss/icons';
+@import '~mdi/scss/extras';
+@import '~mdi/scss/animated';

@@ -1,0 +1,12 @@
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/functions';
+
+$primary: $cyan;
+
+@import '~bulma/sass/utilities/derived-variables';
+
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+$box-padding: 1rem 1.5rem;

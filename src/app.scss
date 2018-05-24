@@ -1,0 +1,18 @@
+// Font for logo
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+// TODO: Check potential optimizations for styles below
+// Handsontable styles
+@import '~handsontable/dist/handsontable.min.css';
+
+// Material Design Icons with only WOFF files
+@import './styles/mdi';
+
+// Bulma and Buefy styles - local bulma stylesheets has only variable overrides
+@import './styles/bulma';
+@import '~bulma/bulma';
+@import '~buefy/src/scss/buefy';
+
+// Own global, custom styles
+@import './styles/styles';
+@import './styles/tooltip';
