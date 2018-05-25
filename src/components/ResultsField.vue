@@ -2,9 +2,9 @@
     <b-field :label="fieldTitle">
         <section class="results">
             <div v-if="hasResults" :class="['content', textColor]">
-                <p><span class="has-text-weight-bold">Data obliczeń:</span> {{localeCalcDate}}</p>
-                <p><span class="has-text-weight-bold">{{numResultText}}:</span> {{results.numResult}}</p>
-                <p><span class="has-text-weight-bold">Przydział:</span></p>
+                <p class="row"><span class="has-text-weight-bold">Data obliczeń:</span> {{localeCalcDate}}</p>
+                <p class="row"><span class="has-text-weight-bold">{{numResultText}}:</span> {{results.numResult}}</p>
+                <p class="row"><span class="has-text-weight-bold">Przydział:</span></p>
                 <ul>
                     <li v-for="ass in results.assignment" :key="ass.worker">
                         <span class="has-text-weight-bold">{{ass.task}}</span>: {{ass.worker}} ({{ass.value}} jedn.)
@@ -69,7 +69,7 @@
 
 <style lang="scss" scoped>
     .results {
-        p {
+        p.row {
             margin-bottom: 0.125rem;
         }
 

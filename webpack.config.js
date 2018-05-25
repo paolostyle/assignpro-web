@@ -36,7 +36,6 @@ function prodSettings(config, analyze) {
     }
 }
 
-
 module.exports = (env, argv) => {
     const config = {
         entry: {

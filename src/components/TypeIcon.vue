@@ -86,7 +86,8 @@
         }
     }
 
-    .button .icon.type-icon {
-        margin-right: 0.5rem;
+    // !important because something is wrong on prod build
+    .type-icon-container .type-icon {
+        margin-right: 0.5rem !important;
     }
 </style>
