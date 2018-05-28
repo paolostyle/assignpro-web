@@ -8,12 +8,21 @@ import {firebaseConfig} from './configs/firebase';
 import {configureAxios} from './configs/axios';
 import {store} from './store';
 import App from './App.vue';
+import VueIntro from 'vue-introjs';
 
+Vue.use(VueIntro);
 Vue.use(VTooltip);
 Vue.use(Buefy, {
     defaultDialogCancelText: 'Anuluj',
     defaultNoticeQueue: false
 });
+
+// introJs().setOptions({
+//     nextLabel: 'Dalej',
+//     prevLabel: 'Cofnij',
+//     doneLabel: 'Gotowe',
+//     skipLabel: 'Pomiń'
+// });
 
 const app = new Vue({
     store,

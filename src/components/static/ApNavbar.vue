@@ -2,11 +2,16 @@
     <nav class="navbar is-light has-shadow" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item has-text-black">
+                <a class="navbar-item has-text-black" v-intro.bottom="'Witaj w AssignPro!'">
                     <h4 class="brand title is-4">Assign<span class="has-text-info">Pro</span></h4>
                 </a>
             </div>
             <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" @click="launchTutorial()">
+                        Uruchom tutorial
+                    </a>
+                </div>
                 <div class="navbar-end">
                     <div v-if="userSpinner" class="navbar-item">
                         <span class="icon">
@@ -45,6 +50,10 @@
         @State userSpinner: boolean;
         @Action logIn: (user) => void;
         @Action logOut: () => void;
+
+        launchTutorial() {
+            this.$intro().start();
+        }
 
         signIn() {
             let provider = new firebase.auth.GoogleAuthProvider();

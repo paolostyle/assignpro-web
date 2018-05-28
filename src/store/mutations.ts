@@ -30,6 +30,7 @@ export const storeMutations = {
         if (currentTab.historyId) {
             currentTab.historyId = undefined;
             currentTab.results.upToDate = false;
+            currentTab.assignmentMap = [];
         }
 
         currentTab[property] = value;
@@ -40,6 +41,7 @@ export const storeMutations = {
         if (currentTab.historyId) {
             currentTab.historyId = undefined;
             currentTab.results.upToDate = false;
+            currentTab.assignmentMap = [];
         }
 
         changes.forEach(change => currentTab.data[change[0]][change[1]] = change[3]);

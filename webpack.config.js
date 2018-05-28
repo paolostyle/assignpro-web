@@ -84,6 +84,9 @@ module.exports = (env, argv) => {
                 inject: true
             }),
             new CopyWebpackPlugin(['favicon.ico']),
+            new webpack.ProvidePlugin({
+                introJs: ['intro.js', 'introJs']
+            })
         ]
     };
 

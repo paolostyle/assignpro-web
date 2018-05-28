@@ -9,7 +9,7 @@
                  default-sort-direction="desc">
             <template slot-scope="scope">
                 <b-table-column field="type" label="Typ" sortable>
-                    <type-icon :type="scope.row.type" v-tooltip.top-left="'msg'"></type-icon>
+                    <type-icon :type="scope.row.type" :tooltip="true"></type-icon>
                 </b-table-column>
 
                 <b-table-column field="name" label="Nazwa" sortable>

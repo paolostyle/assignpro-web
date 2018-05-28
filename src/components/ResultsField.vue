@@ -1,15 +1,30 @@
 <template>
     <b-field :label="fieldTitle">
         <section class="results">
-            <div v-if="hasResults" :class="['content', textColor]">
-                <p class="row"><span class="has-text-weight-bold">Data obliczeń:</span> {{localeCalcDate}}</p>
-                <p class="row"><span class="has-text-weight-bold">{{numResultText}}:</span> {{results.numResult}}</p>
-                <p class="row"><span class="has-text-weight-bold">Przydział:</span></p>
-                <ul>
-                    <li v-for="ass in results.assignment" :key="ass.worker">
-                        <span class="has-text-weight-bold">{{ass.task}}</span>: {{ass.worker}} ({{ass.value}} jedn.)
-                    </li>
-                </ul>
+            <div v-if="hasResults">
+                <strong>{{numResultText}}</strong>: {{results.numResult}}
+                <b-table :data="results.assignment"
+                         :paginated="true"
+                         :perPage="5"
+                         default-sort="task"
+                         default-sort-direction="asc">
+                    <template slot-scope="scope">
+                        <b-table-column field="task" label="Zadanie" sortable centered>
+                            {{ scope.row.task }}
+                        </b-table-column>
+
+                        <b-table-column field="worker" label="Pracownik" sortable centered>
+                            {{ scope.row.worker }}
+                        </b-table-column>
+
+                        <b-table-column field="value"
+                                        label="Wartość"
+                                        sortable
+                                        :visible="results.type !== 4">
+                            {{ scope.row.value }}
+                        </b-table-column>
+                    </template>
+                </b-table>
             </div>
             <div v-else>
                 <div class="content has-text-grey has-text-centered">
@@ -29,8 +44,11 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import {CalculationResults, CalculationType} from '../types';
+    import TypeIcon from './TypeIcon.vue';
 
-    @Component
+    @Component({
+        components: {TypeIcon}
+    })
     export default class ResultsField extends Vue {
         @Prop() results: CalculationResults;
 
@@ -43,7 +61,9 @@
         }
 
         get fieldTitle() {
-            return this.results.upToDate === false ? 'Wyniki (nieaktualne)' : 'Wyniki';
+            return this.results.upToDate === false
+                ? 'Wyniki (nieaktualne)'
+                : this.localeCalcDate ? `Wyniki (${this.localeCalcDate})` : 'Wyniki';
         }
 
         get numResultText() {
@@ -61,20 +81,8 @@
             if (this.results.calculationDate) {
                 return new Date(this.results.calculationDate).toLocaleString();
             } else {
-                return 'Obliczenia nie powiodły się.';
+                return null;
             }
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .results {
-        p.row {
-            margin-bottom: 0.125rem;
-        }
-
-        ul {
-            margin-top: 0.25rem;
-        }
-    }
-</style>

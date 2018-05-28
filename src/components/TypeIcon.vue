@@ -1,12 +1,15 @@
 <template>
-    <span class="type-icon-container" v-if="isInline">
+    <span class="type-icon-container" v-tooltip.top="tooltip ? config.text : null" v-if="isInline">
         <span v-if="config.secIcon" class="complex-icon-inline">
             <b-icon :icon="config.icon"></b-icon>
             <i v-if="config.secIcon" :class="['mdi', 'mdi-' + config.secIcon]"></i>
         </span>
         <b-icon v-else :icon="config.icon" class="type-icon"></b-icon>
     </span>
-    <div class="type-icon-container" v-else :class="[config.secIcon ? 'complex-icon' : '']">
+    <div class="type-icon-container"
+         v-else
+         v-tooltip.top="tooltip ? config.text : null"
+         :class="[config.secIcon ? 'complex-icon' : '']">
         <b-icon class="media-left" :icon="config.icon"></b-icon>
         <i v-if="config.secIcon" :class="['mdi', 'mdi-' + config.secIcon]"></i>
     </div>
@@ -20,25 +23,30 @@
     export default class TypeIcon extends Vue {
         @Prop() type: CalculationType;
         @Prop() isInline: boolean;
+        @Prop() tooltip: boolean;
 
         get config() {
             switch (this.type) {
                 case CalculationType.Sum:
                     return {
+                        text: 'Sumacyjny',
                         icon: 'sigma',
                         secIcon: 'arrow-down',
                     };
                 case CalculationType.SumMax:
                     return {
+                        text: 'Sumacyjny (maks.)',
                         icon: 'sigma',
                         secIcon: 'arrow-up',
                     };
                 case CalculationType.Bottleneck:
                     return {
+                        text: 'Progowy',
                         icon: 'chart-gantt'
                     };
                 case CalculationType.Simple:
                     return {
+                        text: 'Prosty',
                         icon: 'checkbox-multiple-marked'
                     };
                 default:

@@ -4,3 +4,4 @@ declare module '*.vue' {
 }
 
 declare const WEBPACK_BUILD_DATE: string;
+declare const introJs: () => any;
