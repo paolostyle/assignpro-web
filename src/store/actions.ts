@@ -61,7 +61,6 @@ export const storeActions = {
     sendData({commit, getters, dispatch}, id) {
         let tab = getters.getTab(id);
         let requestData = H.prepareDataForSolver(tab.data, tab.type);
-        console.log(requestData);
 
         commit('setLoadingSpinner', true);
         return axios.post('/api/solve', requestData)
