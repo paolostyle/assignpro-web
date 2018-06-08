@@ -75,9 +75,8 @@ export class Helpers {
         return array.slice(start, end);
     }
 
-    static getOrigin() {
-        return window.location.origin ?
-            window.location.origin :
-            window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+    static detectDuplicates(tasks: string[], workers: string[]) {
+        let set = new Set(tasks);
+        let wSet = new Set(workers);
     }
 }

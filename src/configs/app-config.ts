@@ -18,9 +18,6 @@ export function initializeFirebase(authStateChanged: (user) => void) {
 }
 
 export function configureAxios() {
-    // let port = process.env.NODE_ENV === 'development' ? ':5000' : '';
-    // axios.defaults.baseURL = 'http://localhost' + port + '/api';
-
     if (process.env.NODE_ENV === 'development') {
         axios.defaults.baseURL = 'http://localhost:5000';
     }
