@@ -25,13 +25,15 @@ export function configureAxios() {
     axios.interceptors.response.use(
         response => response,
         error => {
+            let message = 'Błąd: ' + error.message;
+
             if (error.response) {
-                return Promise.reject({message: 'Serwer zwrócił błąd: ' + error.response.status});
+                message = 'Serwer zwrócił błąd: ' + error.response.status;
             } else if (error.request) {
-                return Promise.reject({message: 'Nie otrzymano odpowiedzi z serwera. Spróbuj ponownie.'});
-            } else {
-                return Promise.reject({message: 'Błąd: ' + error.message});
+                message = 'Nie otrzymano odpowiedzi z serwera. Spróbuj ponownie.';
             }
+
+            return Promise.reject({message});
         }
     );
 }

@@ -26,17 +26,9 @@
                     </template>
                 </b-table>
             </div>
-            <div v-else>
-                <div class="content has-text-grey has-text-centered">
-                    <p>
-                        <b-icon
-                            icon="emoticon-sad"
-                            size="is-large">
-                        </b-icon>
-                    </p>
-                    <p>Nie wykonano jeszcze żadnych obliczeń.</p>
-                </div>
-            </div>
+            <empty-placeholder v-else>
+                Nie wykonano jeszcze żadnych obliczeń.
+            </empty-placeholder>
         </section>
     </b-field>
 </template>
@@ -44,10 +36,11 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import {CalculationResults, CalculationType} from '../types';
-    import TypeIcon from './TypeIcon.vue';
+    import TypeIcon from './stateless/TypeIcon.vue';
+    import EmptyPlaceholder from './stateless/EmptyPlaceholder.vue';
 
     @Component({
-        components: {TypeIcon}
+        components: {EmptyPlaceholder, TypeIcon}
     })
     export default class ResultsField extends Vue {
         @Prop() results: CalculationResults;

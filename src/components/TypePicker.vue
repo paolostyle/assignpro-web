@@ -21,7 +21,7 @@
 <script lang="ts">
     import {Vue, Component, Emit, Prop, Watch} from 'vue-property-decorator';
     import {CalculationType} from '../types';
-    import TypeIcon from './TypeIcon.vue';
+    import TypeIcon from './stateless/TypeIcon.vue';
 
     @Component({
         components: {TypeIcon}
@@ -57,7 +57,7 @@
         }
 
         @Emit('change')
-        valueChanged(value: string) {
+        valueChanged() {
             return;
         }
     }

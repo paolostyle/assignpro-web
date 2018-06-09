@@ -1,26 +1,36 @@
 <template>
     <div class="assign-pro">
-        <ap-navbar></ap-navbar>
-        <ap-main></ap-main>
-        <ap-footer></ap-footer>
+        <app-navbar></app-navbar>
+        <app-main></app-main>
+        <app-footer></app-footer>
     </div>
 </template>
 
 <script lang="ts">
     import {Vue, Component} from 'vue-property-decorator';
-    import ApNavbar from './components/static/ApNavbar.vue';
-    import ApFooter from './components/static/ApFooter.vue';
-    import ApMain from './components/static/ApMain.vue';
+    import AppNavbar from './components/stateless/AppNavbar.vue';
+    import AppFooter from './components/stateless/AppFooter.vue';
+    import AppMain from './components/stateless/AppMain.vue';
+    import {initializeFirebase, configureAxios} from './configs/app-config';
 
     @Component({
         components: {
-            ApMain,
-            ApFooter,
-            ApNavbar
+            AppMain,
+            AppFooter,
+            AppNavbar
         }
     })
     export default class App extends Vue {
+        beforeCreate() {
+            configureAxios();
+            initializeFirebase(user => {
+                user
+                    ? this.$store.dispatch('logIn', user)
+                    : this.$store.commit('switchSpinner', false);
+            });
+        }
     }
 </script>
 
-<style lang="scss" src="./app.scss"></style>
+<style lang="scss" src="./app.scss">
+</style>

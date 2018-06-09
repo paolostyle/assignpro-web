@@ -17,17 +17,9 @@
             <data-table :id="activeTab"></data-table>
             <config-panel :id="activeTab"></config-panel>
         </div>
-        <section v-else class="section">
-            <div class="content has-text-grey has-text-centered">
-                <p>
-                    <b-icon
-                        icon="emoticon-sad"
-                        size="is-large">
-                    </b-icon>
-                </p>
-                <p>Brak otwartych zakładek. Utwórz nową, używając przycisku <i class="mdi mdi-plus"></i> powyżej.</p>
-            </div>
-        </section>
+        <empty-placeholder v-else>
+            Brak otwartych zakładek. Utwórz nową, używając przycisku <i class="mdi mdi-plus"></i> powyżej.
+        </empty-placeholder>
         <b-loading :is-full-page="false" :active.sync="spinnerActive"></b-loading>
     </div>
 </template>
@@ -39,9 +31,11 @@
     import TabElement from './TabElement.vue';
     import ConfigPanel from './ConfigPanel.vue';
     import DataTable from './DataTable.vue';
+    import EmptyPlaceholder from './stateless/EmptyPlaceholder.vue';
 
     @Component({
         components: {
+            EmptyPlaceholder,
             TabElement,
             DataTable,
             ConfigPanel

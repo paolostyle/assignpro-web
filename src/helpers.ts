@@ -1,8 +1,13 @@
-import {CalculationType, Tab} from './types';
+import {CalculationType, Tab, TableCoordinate} from './types';
 
 export class Helpers {
-    static generateEmptyData = (sizeX: number = 5, sizeY: number = 5, value = null) => Array(sizeY).fill(value).map(() => Array(sizeX));
-    static detachReference = (item: any) => JSON.parse(JSON.stringify(item));
+    static generateEmptyData(sizeX: number = 5, sizeY: number = 5, value = null) {
+        return Array(sizeY).fill(value).map(() => Array(sizeX));
+    }
+
+    static detachReference(item: any) {
+        return JSON.parse(JSON.stringify(item));
+    }
 
     static emptyTab(id: number, name: string): Tab {
         return {
@@ -75,8 +80,36 @@ export class Helpers {
         return array.slice(start, end);
     }
 
-    static detectDuplicates(tasks: string[], workers: string[]) {
-        let set = new Set(tasks);
-        let wSet = new Set(workers);
+    static detectDuplicates(newElement: string, tasks: string[], workers: string[]) {
+        let tasksIndexes: TableCoordinate[] = [];
+        let workersIndexes: TableCoordinate[] = [];
+
+        tasks.forEach((task, index) => {
+            if (newElement === task) {
+                tasksIndexes.push({
+                    row: 0,
+                    col: index
+                });
+            }
+        });
+
+        workers.forEach((worker, index) => {
+            if (newElement === worker) {
+                workersIndexes.push({
+                    row: index,
+                    col: 0
+                });
+            }
+        });
+
+        if (workersIndexes.length >= 2 && tasksIndexes.length >= 2) {
+            return tasksIndexes.concat(workersIndexes);
+        } else if (workersIndexes.length >= 2 && tasksIndexes.length < 2) {
+            return workersIndexes;
+        } else if (workersIndexes.length < 2 && tasksIndexes.length >= 2) {
+            return tasksIndexes;
+        } else {
+            return [];
+        }
     }
 }

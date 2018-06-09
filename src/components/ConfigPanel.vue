@@ -1,31 +1,51 @@
+<i18n>
+    {
+        "pl": {
+            "calculationType": "Typ obliczeń",
+            "actions": "Akcje",
+            "solve": "Rozwiąż",
+            "duplicate": "Duplikuj",
+            "changeName": "Zmień nazwę",
+            "newName": "Podaj nową nazwę:",
+            "validationErrors": "Nie można rozwiązać zadania, ponieważ wystąpiły błędy walidacji. Popraw błędy w komórkach: {errorsList} i spróbuj ponownie.",
+            "toSimple": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na prosty? Wprowadzone dane prawda/fałsz zostaną zamienione na jedynki i zera.",
+            "toNumeric": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? Wprowadzone dane numeryczne zostaną utracone i zostaną zamienione na wartości prawda/fałsz."
+        }
+    }
+</i18n>
+
 <template>
     <section class="config-panel">
         <div class="columns">
             <div class="column">
-                <b-field label="Typ obliczeń">
+                <b-field :label="$t('calculationType')">
                     <type-picker :value="type"
                                  @change="value => confirmTypeChange(value)">
                     </type-picker>
                 </b-field>
-                <b-field label="Akcje">
+                <b-field :label="$t('actions')">
                     <p class="control">
-                        <button class="button is-success" @click="errOrSolve()">
+                        <button class="button is-success"
+                                @click="solve()">
                             <b-icon icon="calculator"></b-icon>
-                            <span>Rozwiąż</span>
+                            <span>{{ $t('solve') }}</span>
                         </button>
-                        <button @click="cloneTab(id)" class="button is-primary is-outlined">
+                        <button class="button is-primary is-outlined"
+                                @click="cloneTab(id)">
                             <b-icon icon="content-duplicate"></b-icon>
-                            <span>Duplikuj</span>
+                            <span>{{ $t('duplicate') }}</span>
                         </button>
-                        <button @click="changeTabName()" class="button is-primary is-outlined">
+                        <button class="button is-primary is-outlined"
+                                @click="changeTabName()">
                             <b-icon icon="rename-box"></b-icon>
-                            <span>Zmień nazwę</span>
+                            <span>{{ $t('changeName') }}</span>
                         </button>
                     </p>
                 </b-field>
             </div>
             <div class="column">
-                <results-field :results="results"></results-field>
+                <results-field :results="results">
+                </results-field>
             </div>
         </div>
     </section>
@@ -70,29 +90,27 @@
             return this.getTabResults(this.id);
         }
 
-        get fromHistory() {
-            return this.getTabResults(this.id).upToDate;
-        }
-
         get isValid() {
             return !this.getTabsValidationErrors(this.id).length;
         }
 
+        // TODO: refactor this method
         confirmTypeChange(newType) {
             if (this.tabHasNumericData(this.id)) {
                 if (this.type === CalculationType.Simple && newType !== CalculationType.Simple) {
                     this.$dialog.confirm({
-                        message: 'Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? ' +
-                        'Wprowadzone dane prawda/fałsz zostaną zamienione na jedynki i zera.',
+                        message: this.$i18n.tc('toNumeric'),
                         onConfirm: () => {
                             this.convertBoolsToInts(this.id);
                             this.type = newType;
                         }
                     });
-                } else if (this.type !== CalculationType.Simple && newType === CalculationType.Simple) {
+                } else if (
+                    this.type !== CalculationType.Simple &&
+                    newType === CalculationType.Simple
+                ) {
                     this.$dialog.confirm({
-                        message: 'Czy jesteś pewien, że chcesz zmienić typ obliczeń na prosty? ' +
-                        'Wprowadzone dane numeryczne zostaną utracone i zostaną zamienione na wartości prawda/fałsz.',
+                        message: this.$i18n.tc('toSimple'),
                         onConfirm: () => {
                             this.clearNumericData(this.id);
                             this.type = newType;
@@ -108,9 +126,9 @@
 
         changeTabName() {
             this.$dialog.prompt({
-                message: 'Podaj nową nazwę:',
-                confirmText: 'Zmień',
-                cancelText: 'Anuluj',
+                message: this.$i18n.tc('newName'),
+                confirmText: this.$i18n.tc('change'),
+                cancelText: this.$i18n.tc('cancel'),
                 inputAttrs: {
                     value: this.getTab(this.id).name,
                     maxlength: 30
@@ -123,7 +141,7 @@
             });
         }
 
-        errOrSolve() {
+        solve() {
             if (this.isValid) {
                 this.sendData(this.id)
                     .then(results => {
@@ -144,14 +162,15 @@
         }
 
         private displayValidationErrors() {
-            let errorsList = this.getTabsValidationErrors(this.id).reduce((listOfErrors, error) => {
-                listOfErrors.push(`(${error.row}, ${error.col})`);
-                return listOfErrors;
-            }, [] as string[]).join(', ');
+            // TODO: probably should move this to Vuex getters
+            let errorsList = this.getTabsValidationErrors(this.id)
+                .reduce((listOfErrors, error) => {
+                    listOfErrors.push(`(${error.row}, ${error.col})`);
+                    return listOfErrors;
+                }, [] as string[]).join(', ');
 
             this.$snackbar.open({
-                message: `Nie można rozwiązać zadania, ponieważ wystąpiły błędy walidacji.
-                          Popraw wartości w komórkach: ${errorsList} na numeryczne i spróbuj ponownie.`,
+                message: this.$i18n.t('validationErrors', {errorsList}),
                 type: 'is-warning',
                 indefinite: true
             } as SnackbarConfig);

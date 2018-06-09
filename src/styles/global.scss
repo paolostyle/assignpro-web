@@ -24,6 +24,10 @@
     animation: spinAround 500ms infinite linear;
 }
 
+.navbar-item .icon:only-child, .navbar-link .icon:only-child {
+    margin-right: 0.5rem;
+}
+
 .corner-cell {
     font-size: 0.6rem;
     position: relative;

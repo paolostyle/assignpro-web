@@ -10,6 +10,7 @@
     import {Action, Getter} from 'vuex-class';
     import Handsontable, {GridSettings} from 'handsontable';
     import {CalculationResults, CalculationType, CellValidation, DataChanges, Tab} from '../types';
+    import {Helpers} from '../helpers';
 
     @Component({
         components: {
@@ -21,6 +22,8 @@
         @Getter getTab: (id: number) => Tab;
         @Getter isOptimalAssignment: (id, row, col) => boolean;
         @Getter getTabResults: (id) => CalculationResults;
+        @Getter getTabTasks: (id) => string[];
+        @Getter getTabWorkers: (id) => string[];
         @Action updateTabData: (payload: DataChanges) => void;
         @Action updateValidationErrors: (payload: CellValidation) => void;
         cellsConfig: (row, col) => object;
@@ -33,7 +36,9 @@
                     type: row === 0 || col === 0 ? 'text' : (
                         this.type === CalculationType.Simple ? 'checkbox' : 'numeric'
                     ),
-                    renderer: this.customRenderer(this.type, this.isOptimalAssignment(this.id, row, col))
+                    renderer: this.customRenderer(
+                        this.type, this.isOptimalAssignment(this.id, row, col)
+                    )
                 };
             };
 
@@ -63,6 +68,25 @@
                         this.updateTabData({
                             id: this.id,
                             changes
+                        });
+
+                        changes.forEach(change => {
+                            if (change[0] === 0 || change[1] === 0) {
+                                let duplicates = Helpers.detectDuplicates(
+                                    change[3],
+                                    this.getTabTasks(this.id),
+                                    this.getTabWorkers(this.id)
+                                );
+                                console.log(duplicates);
+                                duplicates.forEach(({col, row}) => {
+                                    this.updateValidationErrors({
+                                        id: this.id,
+                                        isValid: false,
+                                        col,
+                                        row
+                                    });
+                                });
+                            }
                         });
                     }
                 },
@@ -102,7 +126,8 @@
 
                     if (row === col) {
                         td.classList.add('corner-cell');
-                        td.style.background = 'linear-gradient(to top right, #f5f5f5 48%, #CCC, #f5f5f5 52%)';
+                        td.style.background =
+                            'linear-gradient(to top right, #f5f5f5 48%, #CCC, #f5f5f5 52%)';
                         td.innerHTML = `<span class="tasks">Zadania</span>
                                         <span class="workers">Pracownicy</span>`;
                     }

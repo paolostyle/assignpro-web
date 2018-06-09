@@ -6,10 +6,9 @@
         </span>
         <b-icon v-else :icon="config.icon" class="type-icon"></b-icon>
     </span>
-    <div class="type-icon-container"
-         v-else
+    <div v-else
          v-tooltip.top="tooltip ? config.text : null"
-         :class="[config.secIcon ? 'complex-icon' : '']">
+         :class="['type-icon-container', config.secIcon ? 'complex-icon' : '']">
         <b-icon class="media-left" :icon="config.icon"></b-icon>
         <i v-if="config.secIcon" :class="['mdi', 'mdi-' + config.secIcon]"></i>
     </div>
@@ -17,7 +16,7 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import {CalculationType} from '../types';
+    import {CalculationType} from '../../types';
 
     @Component
     export default class TypeIcon extends Vue {

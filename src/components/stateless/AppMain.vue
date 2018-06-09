@@ -23,7 +23,7 @@
     @Component({
         components: {HistoryTable, Tabs}
     })
-    export default class ApMain extends Vue {
+    export default class AppMain extends Vue {
     }
 </script>
 

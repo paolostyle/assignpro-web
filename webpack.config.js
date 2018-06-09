@@ -53,7 +53,10 @@ module.exports = (env, argv) => {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    extractCSS: argv.mode === 'production'
+                    extractCSS: argv.mode === 'production',
+                    loaders: {
+                        i18n: '@kazupon/vue-i18n-loader'
+                    }
                 }
             }, {
                 test: /\.scss$/,

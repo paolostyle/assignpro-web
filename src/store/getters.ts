@@ -20,7 +20,8 @@ export const storeGetters = {
     },
     isOptimalAssignment: (state, getters) => (id, row, col) => {
         let tab: Tab = getters.getTab(id);
-        return tab.assignmentMap.findIndex(assignment => assignment.row === row && assignment.col === col) !== -1;
+        return tab.assignmentMap
+            .findIndex(assignment => assignment.row === row && assignment.col === col) !== -1;
     },
     getTabTasks: (state, getters) => id => getters.getTab(id).data[0],
     getTabWorkers: (state, getters) => id => getters.getTab(id).data.map(row => row[0]),

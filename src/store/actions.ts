@@ -126,13 +126,17 @@ export const storeActions = {
                     let serverHistoryDate = snapshot.val() && snapshot.val().historyDate;
 
                     if (localHistoryDate && serverHistoryDate) {
-                        let dateComparison = Date.parse(localHistoryDate) - Date.parse(serverHistoryDate);
+                        let dateComparison =
+                            Date.parse(localHistoryDate) - Date.parse(serverHistoryDate);
 
-                        if (dateComparison > 0) { // if local data is newer, behave as if there was no data on the server
+                        // if local data is newer, behave as if there was no data on the server
+                        // if server data is newer, behave as if there was no local data
+                        // if equal do nothing
+                        if (dateComparison > 0) {
                             serverHistoryDate = null;
-                        } else if (dateComparison < 0) { // if server data is newer, behave as if there was no local data
+                        } else if (dateComparison < 0) {
                             localHistoryDate = null;
-                        } // if equal do nothing
+                        }
                     }
 
                     if (localHistoryDate && !serverHistoryDate) {
