@@ -35,9 +35,9 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import {CalculationResults, CalculationType} from '../types';
-    import TypeIcon from './stateless/TypeIcon.vue';
-    import EmptyPlaceholder from './stateless/EmptyPlaceholder.vue';
+    import {CalculationResults, CalculationType} from '../../types';
+    import TypeIcon from './TypeIcon.vue';
+    import EmptyPlaceholder from './EmptyPlaceholder.vue';
 
     @Component({
         components: {EmptyPlaceholder, TypeIcon}

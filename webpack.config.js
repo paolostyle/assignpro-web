@@ -1,70 +1,60 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+"use strict";
+exports.__esModule = true;
+var webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var CleanWebpackPlugin = require("clean-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
 function devSettings(config) {
     config.devServer = {
         hot: true,
         hotOnly: true
     };
-
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
-
 function prodSettings(config, analyze) {
-    config.plugins.push(
-        new CleanWebpackPlugin(['dist']),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new webpack.IgnorePlugin(/^\.\/languages/, /numbro$/),
-        new ExtractTextPlugin('[name].[hash].css'),
-        new OptimizeCssAssetsPlugin()
-    );
-
+    config.plugins.push(new CleanWebpackPlugin(['dist']), new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), new webpack.IgnorePlugin(/^\.\/languages/, /numbro$/), new ExtractTextPlugin('[name].[hash].css'), new OptimizeCssAssetsPlugin());
     config.optimization = {
         splitChunks: {
-            chunks: 'all',
+            chunks: 'all'
         }
     };
-
     if (analyze) {
-        config.plugins.push(new BundleAnalyzerPlugin());
+        config.plugins.push(new webpack_bundle_analyzer_1.BundleAnalyzerPlugin());
     }
 }
-
-module.exports = (env, argv) => {
-    const config = {
+exports["default"] = (function (env, argv) {
+    var config = {
         entry: {
             app: './src/app.ts'
         },
         module: {
             rules: [{
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                options: {
-                    transpileOnly: true,
-                    appendTsSuffixTo: [/\.vue$/]
-                }
-            }, {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    extractCSS: argv.mode === 'production',
-                    loaders: {
-                        i18n: '@kazupon/vue-i18n-loader'
+                    test: /\.tsx?$/,
+                    loader: 'ts-loader',
+                    options: {
+                        transpileOnly: true,
+                        appendTsSuffixTo: [/\.vue$/]
                     }
-                }
-            }, {
-                test: /\.scss$/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader']
-            }, {
-                test: /\.(ttf|woff|woff2|eot|svg)$/,
-                loader: 'file-loader'
-            }]
+                }, {
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        extractCSS: argv.mode === 'production',
+                        loaders: {
+                            i18n: '@kazupon/vue-i18n-loader'
+                        }
+                    }
+                }, {
+                    test: /\.scss$/,
+                    loaders: ['style-loader', 'css-loader', 'sass-loader']
+                }, {
+                    test: /\.(ttf|woff|woff2|eot|svg)$/,
+                    loader: 'file-loader'
+                }]
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.vue', '.js']
@@ -92,8 +82,8 @@ module.exports = (env, argv) => {
             })
         ]
     };
-
-    argv.mode === 'development' ? devSettings(config) : prodSettings(config, argv.analyze);
-
+    argv.mode === 'development'
+        ? devSettings(config)
+        : prodSettings(config, argv.analyze);
     return config;
-};
+});

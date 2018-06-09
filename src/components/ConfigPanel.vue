@@ -55,8 +55,8 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import {Action, Getter} from 'vuex-class';
     import {CalculationResults, CalculationType, Tab, TableCoordinate, TabProperty} from '../types';
-    import TypePicker from './TypePicker.vue';
-    import ResultsField from './ResultsField.vue';
+    import TypePicker from './stateless/TypePicker.vue';
+    import ResultsField from './stateless/ResultsField.vue';
     import {SnackbarConfig} from 'buefy/types/components';
 
     @Component({

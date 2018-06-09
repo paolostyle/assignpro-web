@@ -20,8 +20,8 @@
 
 <script lang="ts">
     import {Vue, Component, Emit, Prop, Watch} from 'vue-property-decorator';
-    import {CalculationType} from '../types';
-    import TypeIcon from './stateless/TypeIcon.vue';
+    import {CalculationType} from '../../types';
+    import TypeIcon from './TypeIcon.vue';
 
     @Component({
         components: {TypeIcon}
