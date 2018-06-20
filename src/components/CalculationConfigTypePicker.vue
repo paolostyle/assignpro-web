@@ -1,14 +1,24 @@
 <template>
-    <b-dropdown v-model="activeType" @change="value => valueChanged(value)">
-        <button class="button is-primary media" type="button" slot="trigger">
-            <type-icon :type="activeTypeData.value" :is-inline="true"></type-icon>
-            <span class="button-text">{{activeTypeData.text}}</span>
-            <b-icon class="dropdown-icon" icon="menu-down"></b-icon>
+    <b-dropdown v-model="activeType"
+                @change="value => valueChanged(value)">
+        <button class="button is-primary media"
+                type="button"
+                slot="trigger">
+            <ap-type-icon :is-inline="true"
+                          :type="activeTypeData.value"/>
+            <span class="button-text">
+                {{activeTypeData.text}}
+            </span>
+            <b-icon class="dropdown-icon"
+                    icon="menu-down">
+            </b-icon>
         </button>
 
-        <b-dropdown-item v-for="option in options" :key="option.value" :value="option.value">
+        <b-dropdown-item v-for="option in options"
+                         :key="option.value"
+                         :value="option.value">
             <div class="media">
-                <type-icon :type="option.value"></type-icon>
+                <ap-type-icon :type="option.value"/>
                 <div class="media-content">
                     <h3>{{option.text}}</h3>
                     <small>{{option.desc}}</small>
@@ -20,13 +30,13 @@
 
 <script lang="ts">
     import {Vue, Component, Emit, Prop, Watch} from 'vue-property-decorator';
-    import {CalculationType} from '../../types';
-    import TypeIcon from './TypeIcon.vue';
+    import {CalculationType} from '../types';
+    import ApTypeIcon from './ApTypeIcon.vue';
 
     @Component({
-        components: {TypeIcon}
+        components: {ApTypeIcon}
     })
-    export default class TypePicker extends Vue {
+    export default class CalculationConfigTypePicker extends Vue {
         @Prop() value: CalculationType;
         activeType: CalculationType = this.value;
         options = [{

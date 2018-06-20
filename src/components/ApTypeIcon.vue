@@ -16,10 +16,10 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import {CalculationType} from '../../types';
+    import {CalculationType} from '../types';
 
     @Component
-    export default class TypeIcon extends Vue {
+    export default class ApTypeIcon extends Vue {
         @Prop() type: CalculationType;
         @Prop() isInline: boolean;
         @Prop() tooltip: boolean;

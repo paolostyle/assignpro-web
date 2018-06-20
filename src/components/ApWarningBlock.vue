@@ -15,7 +15,7 @@
     import {Vue, Component, Prop} from 'vue-property-decorator';
 
     @Component
-    export default class EmptyPlaceholder extends Vue {
+    export default class ApWarningBlock extends Vue {
         @Prop({type: String, default: 'alert-circle-outline'}) icon: string;
     }
 </script>

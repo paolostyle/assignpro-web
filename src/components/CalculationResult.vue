@@ -3,17 +3,23 @@
         <section class="results">
             <div v-if="hasResults">
                 <strong>{{numResultText}}</strong>: {{results.numResult}}
-                <b-table :data="results.assignment"
+                <b-table default-sort="task"
+                         default-sort-direction="asc"
+                         :data="results.assignment"
                          :paginated="true"
-                         :perPage="5"
-                         default-sort="task"
-                         default-sort-direction="asc">
+                         :perPage="5">
                     <template slot-scope="scope">
-                        <b-table-column field="task" label="Zadanie" sortable centered>
+                        <b-table-column field="task"
+                                        label="Zadanie"
+                                        sortable
+                                        centered>
                             {{ scope.row.task }}
                         </b-table-column>
 
-                        <b-table-column field="worker" label="Pracownik" sortable centered>
+                        <b-table-column field="worker"
+                                        label="Pracownik"
+                                        sortable
+                                        centered>
                             {{ scope.row.worker }}
                         </b-table-column>
 
@@ -26,23 +32,22 @@
                     </template>
                 </b-table>
             </div>
-            <empty-placeholder v-else>
+            <ap-warning-block v-else>
                 Nie wykonano jeszcze żadnych obliczeń.
-            </empty-placeholder>
+            </ap-warning-block>
         </section>
     </b-field>
 </template>
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import {CalculationResults, CalculationType} from '../../types';
-    import TypeIcon from './TypeIcon.vue';
-    import EmptyPlaceholder from './EmptyPlaceholder.vue';
+    import {CalculationResults, CalculationType} from '../types';
+    import ApWarningBlock from './ApWarningBlock.vue';
 
     @Component({
-        components: {EmptyPlaceholder, TypeIcon}
+        components: {ApWarningBlock}
     })
-    export default class ResultsField extends Vue {
+    export default class CalculationResult extends Vue {
         @Prop() results: CalculationResults;
 
         get hasResults() {

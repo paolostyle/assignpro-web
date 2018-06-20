@@ -10,10 +10,12 @@
                    @blur="nameChanging = false"
                    @keyup.escape="restoreOldName()"
                    @keyup.enter="nameChanging = false">
-            <span v-show="!nameChanging" :class="isFromHistory ? 'is-italic' : ''">
+            <span v-show="!nameChanging"
+                  :class="isFromHistory ? 'is-italic' : ''">
                 {{tabName}}
             </span>
-            <span class="icon is-small" @click.stop="confirmClosingTab()">
+            <span class="icon is-small"
+                  @click.stop="confirmClosingTab()">
                 <i class="mdi mdi-close tab-close"></i>
             </span>
         </a>
@@ -25,7 +27,7 @@
     import {Getter, Action} from 'vuex-class';
 
     @Component
-    export default class TabElement extends Vue {
+    export default class CalculationTab extends Vue {
         @Prop() id: number;
         @Action setTabProperty: (payload: {id: number, property: string, value: any}) => void;
         @Action closeTab: (id: number) => void;
@@ -50,6 +52,14 @@
             });
         }
 
+        @Watch('nameChanging')
+        focusInput(newValue) {
+            if (newValue) {
+                this.oldName = this.tabName;
+                setTimeout(() => (this.$refs.tabNameInput as HTMLElement).focus());
+            }
+        }
+
         confirmClosingTab() {
             if (!this.isFromHistory && this.tabHasData(this.id)) {
                 this.$dialog.confirm({
@@ -64,14 +74,6 @@
         restoreOldName() {
             this.tabName = this.oldName;
             this.nameChanging = false;
-        }
-
-        @Watch('nameChanging')
-        focusInput(newValue) {
-            if (newValue) {
-                this.oldName = this.tabName;
-                setTimeout(() => (this.$refs.tabNameInput as HTMLElement).focus());
-            }
         }
     }
 </script>

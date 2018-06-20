@@ -1,3 +1,11 @@
+<i18n>
+    {
+        "pl": {
+            "tutorial": "Tutorial"
+        }
+    }
+</i18n>
+
 <template>
     <nav class="navbar is-light has-shadow"
          role="navigation"
@@ -15,9 +23,9 @@
                     <a class="navbar-item"
                        @click="launchTutorial()">
                         <b-icon icon="book-open-variant"></b-icon>
-                        Tutorial
+                        {{ $t('tutorial') }}
                     </a>
-                    <login-button></login-button>
+                    <the-navbar-login-button/>
                 </div>
             </div>
         </div>
@@ -26,12 +34,14 @@
 
 <script lang="ts">
     import {Vue, Component} from 'vue-property-decorator';
-    import LoginButton from '../stateful/LoginButton.vue';
+    import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
 
     @Component({
-        components: {LoginButton}
+        components: {
+            TheNavbarLoginButton
+        }
     })
-    export default class AppNavbar extends Vue {
+    export default class TheNavbar extends Vue {
         launchTutorial() {
             this.$intro().start();
         }

@@ -4,11 +4,11 @@
             <div class="columns">
                 <div class="column is-8">
                     <h4 class="title is-4">Panel obliczeń</h4>
-                    <tabs class="box"></tabs>
+                    <the-tabs class="box"/>
                 </div>
                 <div class="column is-4">
                     <h4 class="title is-4">Historia</h4>
-                    <history-table class="box"></history-table>
+                    <the-history class="box"/>
                 </div>
             </div>
         </div>
@@ -17,13 +17,13 @@
 
 <script lang="ts">
     import {Vue, Component} from 'vue-property-decorator';
-    import Tabs from '../Tabs.vue';
-    import HistoryTable from '../HistoryTable.vue';
+    import TheTabs from './TheTabs.vue';
+    import TheHistory from './TheHistory.vue';
 
     @Component({
-        components: {HistoryTable, Tabs}
+        components: {TheHistory, TheTabs}
     })
-    export default class AppMain extends Vue {
+    export default class TheContent extends Vue {
     }
 </script>
 

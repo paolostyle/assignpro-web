@@ -1,18 +1,18 @@
 <template>
-    <b-table :data="history"
+    <b-table default-sort="date"
+             default-sort-direction="desc"
+             hoverable
+             :data="history"
              :paginated="true"
              :perPage="5"
-             @click="(row) => addExistingTab(row)"
-             hoverable
-             default-sort="date"
-             default-sort-direction="desc">
+             @click="row => addExistingTab(row)">
         <template slot-scope="scope">
             <b-table-column field="type"
                             label="Typ"
                             sortable>
-                <type-icon :type="scope.row.type"
-                           :tooltip="true">
-                </type-icon>
+                <ap-type-icon :type="scope.row.type"
+                              :tooltip="true">
+                </ap-type-icon>
             </b-table-column>
 
             <b-table-column field="name"
@@ -23,15 +23,15 @@
 
             <b-table-column field="date"
                             label="Data"
-                            :custom-sort="dateSorting"
-                            sortable>
+                            sortable
+                            :custom-sort="dateSorting">
                 {{ new Date(scope.row.date).toLocaleString() }}
             </b-table-column>
         </template>
         <template slot="empty">
-            <empty-placeholder>
+            <ap-warning-block>
                 Brak obliczeń w historii.
-            </empty-placeholder>
+            </ap-warning-block>
         </template>
     </b-table>
 </template>
@@ -40,13 +40,13 @@
     import {Vue, Component} from 'vue-property-decorator';
     import {Action, State} from 'vuex-class';
     import {CalculatedTab} from '../types';
-    import TypeIcon from './stateless/TypeIcon.vue';
-    import EmptyPlaceholder from './stateless/EmptyPlaceholder.vue';
+    import ApWarningBlock from './ApWarningBlock.vue';
+    import ApTypeIcon from './ApTypeIcon.vue';
 
     @Component({
-        components: {EmptyPlaceholder, TypeIcon}
+        components: {ApTypeIcon, ApWarningBlock}
     })
-    export default class HistoryTable extends Vue {
+    export default class TheHistory extends Vue {
         @Action addExistingTab: (tab) => void;
         @Action restoreHistoryFromLocalStorage: () => void;
         @State history: CalculatedTab[];

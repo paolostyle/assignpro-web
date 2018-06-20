@@ -19,9 +19,9 @@
         <div class="columns">
             <div class="column">
                 <b-field :label="$t('calculationType')">
-                    <type-picker :value="type"
-                                 @change="value => confirmTypeChange(value)">
-                    </type-picker>
+                    <calculation-config-type-picker
+                        :value="type"
+                        @change="value => confirmTypeChange(value)"/>
                 </b-field>
                 <b-field :label="$t('actions')">
                     <p class="control">
@@ -44,8 +44,7 @@
                 </b-field>
             </div>
             <div class="column">
-                <results-field :results="results">
-                </results-field>
+                <calculation-result :results="results"/>
             </div>
         </div>
     </section>
@@ -55,14 +54,14 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import {Action, Getter} from 'vuex-class';
     import {CalculationResults, CalculationType, Tab, TableCoordinate, TabProperty} from '../types';
-    import TypePicker from './stateless/TypePicker.vue';
-    import ResultsField from './stateless/ResultsField.vue';
     import {SnackbarConfig} from 'buefy/types/components';
+    import CalculationConfigTypePicker from './CalculationConfigTypePicker.vue';
+    import CalculationResult from './CalculationResult.vue';
 
     @Component({
-        components: {ResultsField, TypePicker}
+        components: {CalculationResult, CalculationConfigTypePicker}
     })
-    export default class ConfigPanel extends Vue {
+    export default class CalculationConfig extends Vue {
         @Prop() id: number;
         @Action setTabProperty: (payload: TabProperty) => void;
         @Action sendData: (id: number) => Promise<any>;

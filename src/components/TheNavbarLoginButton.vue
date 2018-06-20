@@ -22,13 +22,18 @@
 </i18n>
 
 <template>
-    <div v-if="userSpinner" class="navbar-item">
+    <div class="navbar-item"
+         v-if="userSpinner">
         <b-icon icon="loading"></b-icon> {{ $t('loading') }}
     </div>
-    <a v-else-if="!userSpinner && !user" class="navbar-item" @click="signIn()">
+    <a class="navbar-item"
+       v-else-if="!userSpinner && !user"
+       @click="signIn()">
         <b-icon icon="login"></b-icon> {{ $t('login') }}
     </a>
-    <a v-else-if="!userSpinner && user" class="navbar-item" @click="signOut()">
+    <a class="navbar-item"
+       v-else-if="!userSpinner && user"
+       @click="signOut()">
         <b-icon icon="logout"></b-icon> {{ $t('logout', {user: user.displayName})}}
     </a>
 </template>
@@ -41,7 +46,7 @@
     import {SnackbarConfig} from 'buefy/types/components';
 
     @Component
-    export default class LoginButton extends Vue {
+    export default class TheNavbarLoginButton extends Vue {
         @State user: any;
         @State userSpinner: boolean;
         @Action logIn: (user) => void;

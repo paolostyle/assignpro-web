@@ -1,23 +1,23 @@
 <template>
     <div class="assign-pro">
-        <app-navbar></app-navbar>
-        <app-main></app-main>
-        <app-footer></app-footer>
+        <the-navbar />
+        <the-content />
+        <the-footer />
     </div>
 </template>
 
 <script lang="ts">
-    import {Vue, Component} from 'vue-property-decorator';
-    import AppNavbar from './components/stateless/AppNavbar.vue';
-    import AppFooter from './components/stateless/AppFooter.vue';
-    import AppMain from './components/stateless/AppMain.vue';
-    import {initializeFirebase, configureAxios} from './configs/app-config';
+    import {Component, Vue} from 'vue-property-decorator';
+    import TheNavbar from './components/TheNavbar.vue';
+    import TheContent from './components/TheContent.vue';
+    import TheFooter from './components/TheFooter.vue';
+    import {configureAxios, initializeFirebase} from './configs/app-config';
 
     @Component({
         components: {
-            AppMain,
-            AppFooter,
-            AppNavbar
+            TheNavbar,
+            TheContent,
+            TheFooter
         }
     })
     export default class App extends Vue {
@@ -31,6 +31,7 @@
         }
     }
 </script>
+
 
 <style lang="scss" src="./app.scss">
 </style>

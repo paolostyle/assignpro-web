@@ -1,6 +1,8 @@
 <template>
     <div class="table-container">
-        <hot-table ref="hot" :root="root" :settings="tableSettings"></hot-table>
+        <hot-table ref="hot"
+                   :root="root"
+                   :settings="tableSettings"/>
     </div>
 </template>
 
@@ -70,6 +72,7 @@
                             changes
                         });
 
+                        // TODO fix this
                         changes.forEach(change => {
                             if (change[0] === 0 || change[1] === 0) {
                                 let duplicates = Helpers.detectDuplicates(

@@ -6,7 +6,8 @@
             </h6>
             <span class="is-size-7 has-text-grey">
                 2018 &copy;
-                <a class="has-text-grey-dark" href="https://github.com/paolostyle">
+                <a class="has-text-grey-dark"
+                   href="https://github.com/paolostyle">
                     Paweł Dąbrowski
                 </a>
             </span>
@@ -21,7 +22,7 @@
     import {Vue, Component} from 'vue-property-decorator';
 
     @Component
-    export default class AppFooter extends Vue {
+    export default class TheFooter extends Vue {
         buildDate: string = WEBPACK_BUILD_DATE;
     }
 </script>
