@@ -27,7 +27,7 @@ function prodSettings(config, analyze) {
 
     config.optimization = {
         splitChunks: {
-            chunks: 'all',
+            chunks: 'all'
         }
     };
 

@@ -30,13 +30,13 @@
                     return {
                         text: 'Sumacyjny',
                         icon: 'sigma',
-                        secIcon: 'arrow-down',
+                        secIcon: 'arrow-down'
                     };
                 case CalculationType.SumMax:
                     return {
                         text: 'Sumacyjny (maks.)',
                         icon: 'sigma',
-                        secIcon: 'arrow-up',
+                        secIcon: 'arrow-up'
                     };
                 case CalculationType.Bottleneck:
                     return {

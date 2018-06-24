@@ -7,11 +7,18 @@ const messages = {
     pl: {
         change: 'Zmień',
         cancel: 'Anuluj',
-        ok: 'OK'
+        ok: 'OK',
+        add: 'Dodaj',
+        noResponse: 'Nie otrzymano odpowiedzi z serwera. Spróbuj ponownie.',
+        serverError: 'Serwer zwrócił błąd: {{error}}',
+        error: 'Błąd: {{error}}',
+        tasks: 'Zadania',
+        workers: 'Pracownicy'
     }
 };
 
 export const i18n = new VueI18n({
     locale: 'pl',
-    messages
+    messages,
+    silentTranslationWarn: true
 });

@@ -23,15 +23,10 @@
     export default class App extends Vue {
         beforeCreate() {
             configureAxios();
-            initializeFirebase(user => {
-                user
-                    ? this.$store.dispatch('logIn', user)
-                    : this.$store.commit('switchSpinner', false);
-            });
+            initializeFirebase();
         }
     }
 </script>
-
 
 <style lang="scss" src="./app.scss">
 </style>

@@ -13,12 +13,12 @@
         "sass"
     ],
     "bugs": {
-        "url": "https://github.com/paolostyle/assignpro-frontend/issues"
+        "url": "https://github.com/paolostyle/assignpro/issues"
     },
-    "homepage": "https://github.com/paolostyle/assignpro-frontend#readme",
+    "homepage": "https://github.com/paolostyle/assignpro#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/paolostyle/assignpro-frontend.git"
+        "url": "git+https://github.com/paolostyle/assignpro.git"
     },
     "scripts": {
         "dev": "tsc webpack.config.ts && webpack-dev-server --open --mode development",
@@ -45,7 +45,7 @@
     },
     "devDependencies": {
         "@kazupon/vue-i18n-loader": "^0.3.0",
-        "@types/jest": "^23.0.0",
+        "@types/jest": "^23.1.1",
         "@types/webpack-env": "^1.13.6",
         "@vue/test-utils": "^1.0.0-beta.16",
         "clean-webpack-plugin": "^0.1.19",
@@ -63,29 +63,30 @@
         "ts-jest": "^22.4.6",
         "ts-loader": "4.3.0",
         "tslint": "^5.10.0",
-        "typescript": "^2.9.1",
+        "typescript": "^2.9.2",
         "vue-jest": "^2.6.0",
-        "vue-loader": "^14.2.2",
+        "vue-loader": "14.2.2",
         "vue-template-compiler": "^2.5.16",
         "webpack": "^4.12.0",
         "webpack-bundle-analyzer": "^2.13.1",
-        "webpack-cli": "^3.0.3",
+        "webpack-cli": "^3.0.8",
         "webpack-dev-server": "^3.1.4"
     },
     "dependencies": {
-        "@handsontable/vue": "^2.0.0-beta1",
+        "@handsontable/vue": "^2.0.0",
         "axios": "^0.18.0",
         "buefy": "^0.6.6",
+        "core-js": "^3.0.0-beta.3",
         "firebase": "^4.13.1",
-        "handsontable": "^3.0.0",
+        "handsontable": "^4.0.0",
         "intro.js": "^2.9.3",
         "mdi": "^2.2.43",
+        "numbro": "^2.0.6",
         "v-tooltip": "^2.0.0-rc.32",
         "vue": "^2.5.16",
-        "vue-i18n": "^7.8.0",
+        "vue-i18n": "^7.8.1",
         "vue-introjs": "^1.2.0",
         "vue-property-decorator": "^6.1.0",
-        "vue-router": "^3.0.1",
         "vuex": "^3.0.1",
         "vuex-class": "^0.3.1"
     }

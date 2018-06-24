@@ -1,5 +1,6 @@
+import {i18n} from './i18n';
 import axios from 'axios';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const firebaseConfig = {
@@ -9,12 +10,10 @@ const firebaseConfig = {
     projectId: 'assignpro-84859'
 };
 
-export function initializeFirebase(authStateChanged: (user) => void) {
+export function initializeFirebase() {
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-
-    firebase.auth().onAuthStateChanged(authStateChanged);
 }
 
 export function configureAxios() {
@@ -25,12 +24,12 @@ export function configureAxios() {
     axios.interceptors.response.use(
         response => response,
         error => {
-            let message = 'Błąd: ' + error.message;
+            let message = i18n.t('error', error.message);
 
             if (error.response) {
-                message = 'Serwer zwrócił błąd: ' + error.response.status;
+                message = i18n.t('serverError', error.response.status);
             } else if (error.request) {
-                message = 'Nie otrzymano odpowiedzi z serwera. Spróbuj ponownie.';
+                message = i18n.t('noResponse');
             }
 
             return Promise.reject({message});

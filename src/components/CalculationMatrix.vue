@@ -11,8 +11,10 @@
     import HotTable from '@handsontable/vue';
     import {Action, Getter} from 'vuex-class';
     import Handsontable, {GridSettings} from 'handsontable';
+    import {MaxLengthCellEditor} from '../configs/handsontable';
     import {CalculationResults, CalculationType, CellValidation, DataChanges, Tab} from '../types';
     import {Helpers} from '../helpers';
+    import numbro from 'numbro';
 
     @Component({
         components: {
@@ -28,21 +30,11 @@
         @Getter getTabWorkers: (id) => string[];
         @Action updateTabData: (payload: DataChanges) => void;
         @Action updateValidationErrors: (payload: CellValidation) => void;
-        cellsConfig: (row, col) => object;
         tableSettings: GridSettings;
         root: string;
 
         created() {
-            this.cellsConfig = (row, col) => {
-                return {
-                    type: row === 0 || col === 0 ? 'text' : (
-                        this.type === CalculationType.Simple ? 'checkbox' : 'numeric'
-                    ),
-                    renderer: this.customRenderer(
-                        this.type, this.isOptimalAssignment(this.id, row, col)
-                    )
-                };
-            };
+            Handsontable.editors.registerEditor('maxLengthCellEditor', MaxLengthCellEditor);
 
             this.root = 'hot-' + this.id;
             this.tableSettings = {
@@ -50,50 +42,20 @@
                 fixedColumnsLeft: 1,
                 minSpareRows: 1,
                 minSpareCols: 1,
-                preventOverflow: 'horizontal',
                 startRows: 5,
                 startCols: 5,
                 rowHeights: 30,
                 autoRowSize: true,
+                autoWrapCol: false,
+                autoWrapRow: false,
+                preventOverflow: 'horizontal',
                 className: 'htCenter htMiddle',
                 cell: [{row: 0, col: 0, readOnly: true}],
                 data: this.getTab(this.id).data,
-                afterValidate: (isValid, value, row, col) => {
-                    this.updateValidationErrors({
-                        id: this.id,
-                        col: col as number,
-                        isValid, row
-                    });
-                },
-                afterChange: (changes, source) => {
-                    if (source !== 'loadData') {
-                        this.updateTabData({
-                            id: this.id,
-                            changes
-                        });
-
-                        // TODO fix this
-                        changes.forEach(change => {
-                            if (change[0] === 0 || change[1] === 0) {
-                                let duplicates = Helpers.detectDuplicates(
-                                    change[3],
-                                    this.getTabTasks(this.id),
-                                    this.getTabWorkers(this.id)
-                                );
-                                console.log(duplicates);
-                                duplicates.forEach(({col, row}) => {
-                                    this.updateValidationErrors({
-                                        id: this.id,
-                                        isValid: false,
-                                        col,
-                                        row
-                                    });
-                                });
-                            }
-                        });
-                    }
-                },
-                cells: this.cellsConfig
+                beforeChange: this.getBeforeChangeHook(),
+                afterValidate: this.getAfterValidateHook(),
+                afterChange: this.getAfterChangeHook(),
+                cells: this.getCellsConfig()
             };
         }
 
@@ -111,48 +73,132 @@
         updateSettings() {
             let hotTable: Handsontable = (this.$refs.hot as any).table;
 
-            hotTable.updateSettings({
-                data: this.getTab(this.id).data,
-                cells: this.cellsConfig
-            }, true);
+            hotTable.updateSettings(
+                {
+                    data: this.getTab(this.id).data,
+                    cells: this.getCellsConfig()
+                },
+                true
+            );
 
             hotTable.validateCells(() => void 0);
         }
 
-        customRenderer(type, isValid) {
-            return function(hotInstance, td, row, col, prop, value, cellProperties) {
-                if (row === 0 || col === 0) {
-                    Handsontable.renderers.TextRenderer.apply(null, arguments);
+        private customRenderer() {
+            let cornerCellRenderer = td => {
+                td.classList.add('corner-cell');
+                td.innerHTML = `<span class="tasks">${this.$i18n.t('tasks')}</span>
+                                <span class="workers">${this.$i18n.t('workers')}</span>`;
+            };
 
-                    td.style.fontWeight = 'bold';
-                    td.style.background = '#f5f5f5';
+            let customCheckboxRenderer = td => {
+                let spanCheck = document.createElement('span');
+                spanCheck.classList.add('check');
 
-                    if (row === col) {
-                        td.classList.add('corner-cell');
-                        td.style.background =
-                            'linear-gradient(to top right, #f5f5f5 48%, #CCC, #f5f5f5 52%)';
-                        td.innerHTML = `<span class="tasks">Zadania</span>
-                                        <span class="workers">Pracownicy</span>`;
-                    }
-                } else {
-                    if (type === CalculationType.Simple) {
-                        cellProperties.label = {
+                let checkboxLabel = td.firstChild;
+                checkboxLabel.classList.add('b-checkbox', 'checkbox', 'is-hot-checkbox');
+                checkboxLabel.appendChild(spanCheck);
+            };
+
+            return (hotInstance, td, row, col, prop, value, cellProps) => {
+                let args = [hotInstance, td, row, col, prop, value, cellProps];
+
+                if (row && col) {
+                    if (this.type === CalculationType.Simple) {
+                        cellProps.label = {
                             position: 'before'
                         };
-                        Handsontable.renderers.CheckboxRenderer.apply(null, arguments);
-
-                        let spanCheck = document.createElement('span');
-                        spanCheck.classList.add('check');
-                        let checkboxLabel = td.firstChild;
-                        checkboxLabel.classList.add('b-checkbox', 'checkbox', 'is-hot-checkbox');
-                        checkboxLabel.appendChild(spanCheck);
+                        Handsontable.renderers.CheckboxRenderer.apply(null, args);
+                        customCheckboxRenderer(td);
                     } else {
-                        Handsontable.renderers.TextRenderer.apply(null, arguments);
+                        Handsontable.renderers.NumericRenderer.apply(null, args);
                     }
 
-                    if (row !== 0 && col !== 0 && isValid) {
-                        td.style.background = '#23d160';
+                    if (this.isOptimalAssignment(this.id, row, col)) {
+                        td.classList.add('optimal-cell');
                     }
+                } else {
+                    Handsontable.renderers.TextRenderer.apply(null, args);
+                    row === col ? cornerCellRenderer(td) : td.classList.add('header-cell');
+                }
+
+                return td;
+            };
+        }
+
+        private getCellsConfig() {
+            return (row, col): GridSettings => {
+                let config = {
+                    type: 'text',
+                    editor: 'text',
+                    renderer: this.customRenderer()
+                };
+
+                if (row && col) {
+                    if (this.type === CalculationType.Simple) {
+                        config.type = config.editor = 'checkbox';
+                    } else {
+                        config.type = 'numeric';
+                        config.editor = 'maxLengthCellEditor';
+                    }
+                }
+
+                return config;
+            };
+        }
+
+        private getAfterValidateHook() {
+            return (isValid, value, row, col) => {
+                this.updateValidationErrors({
+                    id: this.id,
+                    col: col as number,
+                    isValid,
+                    row
+                });
+            };
+        }
+
+        private getBeforeChangeHook() {
+            return (changes, source) => {
+                changes.forEach(change => {
+                    if (change[0] && change[1] && typeof change[3] === 'number') {
+                        let strValue = numbro(change[3]).format({
+                            trimMantissa: true,
+                            mantissa: 2
+                        });
+                        change[3] = numbro.unformat(strValue);
+                    }
+                });
+            };
+        }
+
+        private getAfterChangeHook() {
+            return (changes, source) => {
+                if (source !== 'loadData') {
+                    this.updateTabData({
+                        id: this.id,
+                        changes
+                    });
+
+                    // TODO fix this
+                    changes.forEach(change => {
+                        if (change[0] === 0 || change[1] === 0) {
+                            let duplicates = Helpers.detectDuplicates(
+                                change[3],
+                                this.getTabTasks(this.id),
+                                this.getTabWorkers(this.id)
+                            );
+                            console.log(duplicates);
+                            duplicates.forEach(({col, row}) => {
+                                this.updateValidationErrors({
+                                    id: this.id,
+                                    isValid: false,
+                                    col,
+                                    row
+                                });
+                            });
+                        }
+                    });
                 }
             };
         }

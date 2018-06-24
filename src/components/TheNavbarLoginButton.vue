@@ -40,51 +40,63 @@
 
 <script lang="ts">
     import {Vue, Component} from 'vue-property-decorator';
-    import * as firebase from 'firebase/app';
-    import 'firebase/auth';
     import {Action, State} from 'vuex-class';
     import {SnackbarConfig} from 'buefy/types/components';
+    import {UserCredential} from '@firebase/auth-types';
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
 
     @Component
     export default class TheNavbarLoginButton extends Vue {
+        userSpinner: boolean = true;
         @State user: any;
-        @State userSpinner: boolean;
-        @Action logIn: (user) => void;
-        @Action logOut: () => void;
+        @Action handleSuccessfulLogin: (user) => void;
+        @Action logIn: () => Promise<UserCredential>;
+        @Action logOut: () => Promise<void>;
 
-        signIn() {
-            let provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().languageCode = 'pl';
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
-                firebase.auth().signInWithPopup(provider)
-                    .then(result => {
-                        this.$snackbar.open({
-                            message: this.$i18n.t('loginSuccess', {
-                                name: result.user.displayName
-                            }) as string,
-                            type: 'is-success',
-                        });
-                    })
-                    .catch(error => {
-                        this.$snackbar.open({
-                            message: this.$i18n.t('loginFailed', {
-                                error: this.getSignInErrorMessage(error.code)
-                            }),
-                            type: 'is-danger',
-                            indefinite: true,
-                        } as SnackbarConfig);
-                    });
+        beforeCreate() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    this.handleSuccessfulLogin(user);
+                }
+                this.userSpinner = false;
             });
         }
 
+        signIn() {
+            this.userSpinner = true;
+            this.logIn()
+                .then(({user}) => {
+                    if (user) {
+                        this.$snackbar.open({
+                            message: this.$i18n.t('loginSuccess', {
+                                name: user.displayName
+                            }) as string,
+                            type: 'is-success'
+                        });
+                    }
+                })
+                .catch(error => {
+                    this.$snackbar.open({
+                        message: this.$i18n.t('loginFailed', {
+                            error: this.getSignInErrorMessage(error.code)
+                        }),
+                        type: 'is-danger',
+                        indefinite: true
+                    } as SnackbarConfig);
+                })
+                .finally(() => this.userSpinner = false);
+        }
+
         signOut() {
-            firebase.auth().signOut().then(() => {
-                this.logOut();
-                this.$snackbar.open({
-                    message: this.$i18n.tc('logoutSuccess'),
-                    type: 'is-success',
+            this.userSpinner = true;
+            this.logOut()
+                .then(() => {
+                    this.$snackbar.open({
+                        message: this.$i18n.tc('logoutSuccess'),
+                        type: 'is-success'
+                    });
                 });
-            });
         }
 
         private getSignInErrorMessage(code) {

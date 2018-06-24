@@ -1,4 +1,3 @@
-import './configs/polyfills';
 import Vue from 'vue';
 import Buefy from 'buefy';
 import VTooltip from 'v-tooltip';

@@ -17,7 +17,6 @@ export interface AppState {
     history: CalculatedTab[];
     historyCounter: number;
     user: any;
-    userSpinner: boolean;
 }
 
 export interface Tab {

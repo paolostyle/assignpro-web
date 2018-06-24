@@ -1,3 +1,4 @@
+import 'core-js/features/array/fill';
 import {CalculationType, Tab, TableCoordinate} from './types';
 
 export class Helpers {
@@ -101,6 +102,8 @@ export class Helpers {
                 });
             }
         });
+
+        console.log(tasksIndexes, workersIndexes);
 
         if (workersIndexes.length >= 2 && tasksIndexes.length >= 2) {
             return tasksIndexes.concat(workersIndexes);

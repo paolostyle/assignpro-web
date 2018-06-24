@@ -15,8 +15,7 @@ const state: AppState = {
     tabs: [H.emptyTab(1, 'Obliczenia 1')] as Tab[],
     history: [] as CalculatedTab[],
     historyCounter: 1,
-    user: null,
-    userSpinner: true
+    user: null
 };
 
 export const store = new Vuex.Store({

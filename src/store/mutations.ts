@@ -1,5 +1,6 @@
 import {Tab, TableCoordinate} from '../types';
 import {Helpers as H} from '../helpers';
+import {User} from 'firebase';
 
 export const storeMutations = {
     setLoadingSpinner(state, value) {
@@ -103,13 +104,15 @@ export const storeMutations = {
         }
         state.tabs[index].assignmentMap = assignmentMap;
     },
-    logIn(state, user) {
-        state.user = user;
-    },
-    logOut(state) {
-        state.user = null;
-    },
-    switchSpinner(state, spinnerValue) {
-        state.userSpinner = spinnerValue;
+    saveUserData(state, user: User | null) {
+        if (user) {
+            let {displayName, uid} = user;
+            state.user = {
+                displayName,
+                uid
+            };
+        } else {
+            state.user = null;
+        }
     }
 };

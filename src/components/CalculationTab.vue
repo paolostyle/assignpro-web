@@ -8,7 +8,7 @@
                    v-model="tabName"
                    v-show="nameChanging"
                    @blur="nameChanging = false"
-                   @keyup.escape="restoreOldName()"
+                   @keyup.esc="restoreOldName()"
                    @keyup.enter="nameChanging = false">
             <span v-show="!nameChanging"
                   :class="isFromHistory ? 'is-italic' : ''">

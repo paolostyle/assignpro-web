@@ -3,7 +3,7 @@
         "pl": {
             "no-tabs": "Brak otwartych zakładek. Utwórz nową, używając przycisku ",
             "add-new-tab": "Podaj nazwę nowego obliczenia:",
-            "calculation": "Obliczenie {{number}}"
+            "calculation": "Obliczenie {number}"
         }
     }
 </i18n>

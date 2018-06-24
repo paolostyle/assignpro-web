@@ -1,4 +1,5 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/database';
 import axios from 'axios';
 import {Helpers as H} from '../helpers';
@@ -116,10 +117,26 @@ export const storeActions = {
         let tabIndex = getters.getTabIndex(id);
         commit('convertBoolsToInts', tabIndex);
     },
-    logIn({commit, dispatch, getters}, user) {
-        commit('logIn', user);
-        commit('switchSpinner', false);
-        if (user) {
+    logIn({dispatch}) {
+        firebase.auth().languageCode = 'pl';
+        return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+                return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                    .then(result => {
+                        dispatch('handleSuccessfulLogin', result.user);
+                        return result;
+                    });
+            });
+    },
+    logOut({commit}) {
+        return firebase.auth().signOut()
+            .then(() => commit('saveUserData', null));
+    },
+    handleSuccessfulLogin({commit, dispatch}, user) {
+        commit('saveUserData', user);
+        dispatch('getRemoteHistory');
+    },
+    getRemoteHistory({commit, dispatch, getters}) {
             firebase.database().ref(getters.getDatabasePath).once('value')
                 .then(snapshot => {
                     let localHistoryDate = window.localStorage.getItem('historyDate');
@@ -151,8 +168,4 @@ export const storeActions = {
                     }
                 });
         }
-    },
-    logOut({commit}) {
-        commit('logOut');
-    }
 };

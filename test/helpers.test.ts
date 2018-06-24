@@ -1,7 +1,8 @@
 import {Helpers} from '../src/helpers';
 
 test('trimArray works properly', () => {
-    let testArray = [undefined, null, '13', 'ABC', null, 'Wow', null, 0, 'Hi', null, '', null, undefined];
+    let testArray = [undefined, null, '13', 'ABC', null,
+        'Wow', null, 0, 'Hi', null, '', null, undefined];
     let expectedResult = ['13', 'ABC', null, 'Wow', null, 0, 'Hi'];
 
     let trimmedArray = Helpers.trimArray(testArray);
@@ -33,4 +34,14 @@ test('data is prepared for solving', () => {
     let preparedObject = Helpers.prepareDataForSolver(data, type);
 
     expect(preparedObject).toEqual(expectedObject);
+});
+
+test('detects duplicates', () => {
+    let workers = ['a', 'b', 'a', 'c', 'd', 'e'];
+    let tasks = ['z', 'x', 'x', 'c', 'a'];
+    let val = 'c';
+
+    let result = Helpers.detectDuplicates(val, tasks, workers);
+    console.log(result);
+    expect(true).toEqual(true);
 });
