@@ -1,8 +1,8 @@
 <template>
-    <div class="table-container">
+    <div class="matrix-container">
         <hot-table ref="hot"
-                   :root="root"
-                   :settings="tableSettings"/>
+                   :id="root"
+                   :settings="tableSettings" />
     </div>
 </template>
 
@@ -21,7 +21,7 @@
             HotTable
         }
     })
-    export default class DataTable extends Vue {
+    export default class CalculationMatrix extends Vue {
         @Prop() id: number;
         @Getter getTab: (id: number) => Tab;
         @Getter isOptimalAssignment: (id, row, col) => boolean;
@@ -71,7 +71,7 @@
         @Watch('type')
         @Watch('results')
         updateSettings() {
-            let hotTable: Handsontable = (this.$refs.hot as any).table;
+            let hotTable: Handsontable = (this.$refs.hot as any).hotInstance;
 
             hotTable.updateSettings(
                 {
@@ -160,15 +160,17 @@
 
         private getBeforeChangeHook() {
             return (changes, source) => {
-                changes.forEach(change => {
-                    if (change[0] && change[1] && typeof change[3] === 'number') {
-                        let strValue = numbro(change[3]).format({
-                            trimMantissa: true,
-                            mantissa: 2
-                        });
-                        change[3] = numbro.unformat(strValue);
-                    }
-                });
+                if (source !== 'loadData') {
+                    changes.forEach(change => {
+                        if (change[0] && change[1] && typeof change[3] === 'number') {
+                            let strValue = numbro(change[3]).format({
+                                trimMantissa: true,
+                                mantissa: 2
+                            });
+                            change[3] = numbro.unformat(strValue);
+                        }
+                    });
+                }
             };
         }
 
@@ -206,7 +208,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .table-container {
+    .matrix-container {
         width: 100%;
     }
 </style>

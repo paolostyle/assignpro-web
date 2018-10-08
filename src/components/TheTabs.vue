@@ -52,7 +52,7 @@
             CalculationConfig
         }
     })
-    export default class ApTabs extends Vue {
+    export default class TheTabs extends Vue {
         @State tabs: Tab[];
         @State activeTab: number;
         @State tabCounter: number;
