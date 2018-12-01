@@ -1,90 +1,92 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <style type="text/css">
-            @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
-            html, body, #app {
-                height: 100%;
-            }
+      html,
+      body,
+      #app {
+        height: 100%;
+      }
 
-            @-webkit-keyframes spin {
-                from {
-                    -ms-transform: rotate(0deg);
-                    -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-                }
-                to {
-                    -ms-transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-                }
-            }
+      @-webkit-keyframes spin {
+        from {
+          -ms-transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        to {
+          -ms-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
 
-            @keyframes spin {
-                from {
-                    -ms-transform: rotate(0deg);
-                    -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-                }
-                to {
-                    -ms-transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-                }
-            }
+      @keyframes spin {
+        from {
+          -ms-transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        to {
+          -ms-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
 
-            #app {
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                align-items: center;
-                flex-wrap: wrap;
-                margin: 0;
-            }
+      #app {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0;
+      }
 
-            .loading {
-                align-self: center;
-                margin-top: -30px;
-            }
+      .loading {
+        align-self: center;
+        margin-top: -30px;
+      }
 
-            .loading:after {
-                -webkit-animation: spin 500ms infinite linear;
-                animation: spin 500ms infinite linear;
-                border: 0.25em solid #dbdbdb;
-                border-radius: 100%;
-                border-right-color: transparent;
-                border-top-color: transparent;
-                content: "";
-                display: block;
-                width: 3em;
-                height: 3em;
-            }
+      .loading:after {
+        -webkit-animation: spin 500ms infinite linear;
+        animation: spin 500ms infinite linear;
+        border: 0.25em solid #dbdbdb;
+        border-radius: 100%;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: '';
+        display: block;
+        width: 3em;
+        height: 3em;
+      }
 
-            h1.preloader-title {
-                font-family: 'Montserrat', sans-serif;
-                color: #363636;
-                font-weight: 500;
-                font-size: 4em;
-                width: 100%;
-                text-align: center;
-                margin-top: -150px;
-            }
+      h1.preloader-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #363636;
+        font-weight: 500;
+        font-size: 4em;
+        width: 100%;
+        text-align: center;
+        margin-top: -150px;
+      }
 
-            h1.preloader-title .pro {
-                color: #209cee;
-            }
-        </style>
-        <link rel="shortcut icon" href="favicon.ico">
-        <title>AssignPro</title>
-    </head>
-    <body>
-        <div id="app">
-            <h1 class="preloader-title">Assign<span class="pro">Pro</span></h1>
-            <div class="loading"></div>
-        </div>
-    </body>
+      h1.preloader-title .pro {
+        color: #209cee;
+      }
+    </style>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>AssignPro</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="preloader-title">Assign<span class="pro">Pro</span></h1>
+      <div class="loading"></div>
+    </div>
+  </body>
 </html>

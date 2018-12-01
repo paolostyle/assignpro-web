@@ -1,94 +1,101 @@
 {
-    "name": "assignpro-frontend",
-    "version": "0.1.0",
-    "description": "Frontend for AssignPro webapp",
-    "author": "Paweł Dąbrowski <dabrowskip9@gmail.com>",
-    "license": "ISC",
-    "keywords": [
-        "assignpro",
-        "assignment-problem",
-        "vue",
-        "typescript",
-        "webpack",
-        "sass"
-    ],
-    "bugs": {
-        "url": "https://github.com/paolostyle/assignpro/issues"
+  "name": "assignpro-frontend",
+  "version": "0.1.0",
+  "description": "Frontend for AssignPro webapp",
+  "author": "Paweł Dąbrowski <dabrowskip9@gmail.com>",
+  "license": "ISC",
+  "keywords": [
+    "assignpro",
+    "assignment-problem",
+    "vue",
+    "typescript",
+    "webpack",
+    "sass"
+  ],
+  "bugs": {
+    "url": "https://github.com/paolostyle/assignpro/issues"
+  },
+  "homepage": "https://github.com/paolostyle/assignpro#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paolostyle/assignpro.git"
+  },
+  "scripts": {
+    "dev": "tsc webpack.config.ts --lib es6 && webpack-dev-server --open --mode development",
+    "build": "tsc webpack.config.ts --lib es6 && webpack --mode production --progress",
+    "test": "jest",
+    "build:analyze": "tsc webpack.config.ts --lib es6 && webpack --mode production --analyze"
+  },
+  "sideEffects": false,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      ".*\\.(vue)$": "vue-jest"
     },
-    "homepage": "https://github.com/paolostyle/assignpro#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/paolostyle/assignpro.git"
-    },
-    "scripts": {
-        "dev": "tsc webpack.config.ts --lib es6 && webpack-dev-server --open --mode development",
-        "build": "tsc webpack.config.ts --lib es6 && webpack --mode production --progress",
-        "test": "jest",
-        "build:analyze": "tsc webpack.config.ts --lib es6 && webpack --mode production --analyze"
-    },
-    "sideEffects": false,
-    "jest": {
-        "transform": {
-            "^.+\\.tsx?$": "ts-jest",
-            ".*\\.(vue)$": "vue-jest"
-        },
-        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js",
-            "jsx",
-            "json",
-            "node",
-            "vue"
-        ]
-    },
-    "devDependencies": {
-        "@kazupon/vue-i18n-loader": "^0.3.0",
-        "@types/jest": "^23.1.4",
-        "@types/webpack-env": "^1.13.6",
-        "@vue/test-utils": "^1.0.0-beta.16",
-        "clean-webpack-plugin": "^0.1.19",
-        "copy-webpack-plugin": "^4.5.2",
-        "css-loader": "^1.0.0",
-        "extract-text-webpack-plugin": "^4.0.0-beta.0",
-        "file-loader": "^2.0.0",
-        "fork-ts-checker-webpack-plugin": "0.4.1",
-        "html-webpack-plugin": "^3.2.0",
-        "jest": "^23.3.0",
-        "node-sass": "^4.9.1",
-        "optimize-css-assets-webpack-plugin": "^5.0.1",
-        "sass-loader": "^7.0.3",
-        "style-loader": "^0.23.0",
-        "ts-jest": "^23.0.0",
-        "ts-loader": "4.3.0",
-        "tslint": "^5.10.0",
-        "typescript": "^2.9.2",
-        "vue-jest": "^2.6.0",
-        "vue-loader": "14.2.2",
-        "vue-template-compiler": "^2.5.16",
-        "webpack": "^4.15.1",
-        "webpack-bundle-analyzer": "^3.0.2",
-        "webpack-cli": "^3.0.8",
-        "webpack-dev-server": "^3.1.4"
-    },
-    "dependencies": {
-        "@handsontable/vue": "^3.0.0",
-        "axios": "^0.18.0",
-        "buefy": "^0.6.6",
-        "core-js": "^3.0.0-beta.3",
-        "firebase": "^5.5.3",
-        "handsontable": "^6.0.1",
-        "intro.js": "^2.9.3",
-        "mdi": "^2.2.43",
-        "numbro": "^2.0.6",
-        "v-tooltip": "^2.0.0-rc.32",
-        "vue": "^2.5.16",
-        "vue-class-component": "^6.2.0",
-        "vue-i18n": "^7.8.1",
-        "vue-introjs": "^1.3.0",
-        "vue-property-decorator": "^7.2.0",
-        "vuex": "^3.0.1",
-        "vuex-class": "^0.3.1"
-    }
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node",
+      "vue"
+    ]
+  },
+  "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@types/jest": "^23.1.4",
+    "@types/webpack-env": "^1.13.6",
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "fork-ts-checker-webpack-plugin": "0.4.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.3.0",
+    "node-sass": "^4.9.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "prettier": "1.15.3",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.23.0",
+    "ts-jest": "^23.0.0",
+    "ts-loader": "4.3.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^2.9.2",
+    "vue-jest": "^2.6.0",
+    "vue-loader": "14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.15.1",
+    "webpack-bundle-analyzer": "^3.0.2",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "@handsontable/vue": "^3.0.0",
+    "axios": "^0.18.0",
+    "buefy": "^0.6.6",
+    "core-js": "^3.0.0-beta.3",
+    "firebase": "^5.5.3",
+    "handsontable": "^6.2.0",
+    "intro.js": "^2.9.3",
+    "mdi": "^2.2.43",
+    "numbro": "^2.0.6",
+    "v-tooltip": "^2.0.0-rc.32",
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.2.0",
+    "vue-i18n": "^7.8.1",
+    "vue-introjs": "^1.3.0",
+    "vue-property-decorator": "^7.2.0",
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
+  }
 }

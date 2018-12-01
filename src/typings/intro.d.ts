@@ -1,6 +1,5 @@
-import Vue from 'vue';
 declare module 'vue/types/vue' {
-    interface Vue {
-        $intro: any;
-    }
+  interface Vue {
+    $intro: any;
+  }
 }

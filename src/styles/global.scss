@@ -1,67 +1,68 @@
 @import './bulma';
 
 .assign-pro {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 
 .table.is-hoverable tbody tr:not(.is-selected):hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .b-checkbox.checkbox.is-hot-checkbox {
-    border-radius: 1px;
-    font-size: 0.7rem;
-    display: inline-flex;
-    justify-content: center;
+  border-radius: 1px;
+  font-size: 0.7rem;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .mdi-loading {
-    animation: spinAround 500ms infinite linear;
+  animation: spinAround 500ms infinite linear;
 }
 
-.navbar-item .icon:only-child, .navbar-link .icon:only-child {
-    margin-right: 0.5rem;
+.navbar-item .icon:only-child,
+.navbar-link .icon:only-child {
+  margin-right: 0.5rem;
 }
 
 .handsontable td {
-    &.optimal-cell {
-        background: $green;
+  &.optimal-cell {
+    background: $green;
+  }
+
+  &.header-cell {
+    font-weight: bold;
+    background: $light;
+  }
+
+  &.corner-cell {
+    font-weight: bold;
+    font-size: 0.6rem;
+    position: relative;
+    min-height: 29px;
+    height: 100%;
+    width: 100px;
+    text-transform: uppercase;
+    background: linear-gradient(to top right, $light 48%, $matrix-border, $light 52%);
+
+    span {
+      position: absolute;
     }
 
-    &.header-cell {
-        font-weight: bold;
-        background: $light;
+    .workers {
+      left: 0.1rem;
+      bottom: -0.3rem;
     }
 
-    &.corner-cell {
-        font-weight: bold;
-        font-size: 0.6rem;
-        position: relative;
-        min-height: 29px;
-        height: 100%;
-        width: 100px;
-        text-transform: uppercase;
-        background: linear-gradient(to top right, $light 48%, $matrix-border, $light 52%);
-
-        span {
-            position: absolute;
-        }
-
-        .workers {
-            left: 0.1rem;
-            bottom: -0.3rem
-        }
-
-        .tasks {
-            top: -0.3rem;
-            right: 0.1rem
-        }
+    .tasks {
+      top: -0.3rem;
+      right: 0.1rem;
     }
+  }
 }
