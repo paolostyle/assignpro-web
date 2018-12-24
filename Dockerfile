@@ -1,5 +1,5 @@
 # STAGE 1: Build frontend
-FROM node:8.11.2-alpine AS build
+FROM node:10.14.2-alpine AS build
 
 # Install Vue app dependencies
 WORKDIR /app
@@ -12,6 +12,6 @@ COPY . .
 RUN yarn build
 
 # STAGE 2: Serve the app
-FROM nginx:1.14.0-alpine
+FROM nginx:1.14.2-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /webapp
