@@ -6,6 +6,10 @@
   height: 100vh;
 }
 
+.modal {
+  z-index: 1000;
+}
+
 .brand {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;

@@ -3,7 +3,7 @@ import VTooltip from 'v-tooltip';
 import Vue from 'vue';
 import VueIntro from 'vue-introjs';
 import App from './App.vue';
-import { i18n } from './configs/i18n';
+import i18n from './i18n';
 import { store } from './store/store';
 
 Vue.use(VueIntro);
@@ -13,7 +13,7 @@ Vue.use(Buefy, {
   defaultNoticeQueue: false
 });
 
-const app = new Vue({
+new Vue({
   store,
   i18n,
   render: h => h(App)

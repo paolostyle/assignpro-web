@@ -1,4 +1,4 @@
-import { Helpers } from '../src/helpers';
+import { Helpers } from '../../src/helpers';
 
 test('trimArray works properly', () => {
   let testArray = [

@@ -1,4 +1,3 @@
-import 'core-js/features/array/fill';
 import { CalculationType, Tab, TableCoordinate } from './types';
 
 export class Helpers {

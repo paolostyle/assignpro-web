@@ -84,7 +84,7 @@ export default class CalculationMatrix extends Vue {
     let cornerCellRenderer = td => {
       td.classList.add('corner-cell');
       td.innerHTML = `<span class="tasks">${this.$i18n.t('tasks')}</span>
-                                <span class="workers">${this.$i18n.t('workers')}</span>`;
+      <span class="workers">${this.$i18n.t('workers')}</span>`;
     };
 
     let customCheckboxRenderer = td => {
@@ -97,24 +97,23 @@ export default class CalculationMatrix extends Vue {
     };
 
     return (hotInstance, td, row, col, prop, value, cellProps) => {
-      let args = [hotInstance, td, row, col, prop, value, cellProps];
-
+      const { CheckboxRenderer, NumericRenderer, TextRenderer } = Handsontable.renderers;
       if (row && col) {
         if (this.type === CalculationType.Simple) {
           cellProps.label = {
             position: 'before'
           };
-          Handsontable.renderers.CheckboxRenderer.apply(null, args);
+          CheckboxRenderer(hotInstance, td, row, col, prop, value, cellProps);
           customCheckboxRenderer(td);
         } else {
-          Handsontable.renderers.NumericRenderer.apply(null, args);
+          NumericRenderer(hotInstance, td, row, col, prop, value, cellProps);
         }
 
         if (this.isOptimalAssignment(this.id, row, col)) {
           td.classList.add('optimal-cell');
         }
       } else {
-        Handsontable.renderers.TextRenderer.apply(null, args);
+        TextRenderer(hotInstance, td, row, col, prop, value, cellProps);
         row === col ? cornerCellRenderer(td) : td.classList.add('header-cell');
       }
 
