@@ -2,6 +2,7 @@ const { DefinePlugin } = require('webpack');
 
 module.exports = {
   configureWebpack: {
+    devtool: false,
     plugins: [
       new DefinePlugin({
         WEBPACK_BUILD_DATE: JSON.stringify(new Date().toISOString())
