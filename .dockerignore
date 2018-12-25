@@ -1,8 +1,0 @@
-.dockerignore
-Dockerfile
-node_modules
-.idea
-.vscode
-.git
-.gitignore
-dist
