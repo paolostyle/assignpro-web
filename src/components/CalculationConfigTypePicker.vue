@@ -19,11 +19,11 @@
 </template>
 
 <script lang="ts">
-  import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator';
-  import { CalculationType } from '../types';
-  import ApTypeIcon from './ApTypeIcon.vue';
+import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator';
+import { CalculationType } from '../types';
+import ApTypeIcon from './ApTypeIcon.vue';
 
-  @Component({
+@Component({
   components: { ApTypeIcon }
 })
 export default class CalculationConfigTypePicker extends Vue {

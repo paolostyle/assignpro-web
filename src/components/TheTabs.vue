@@ -34,15 +34,15 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
-  import { Action, Mutation, State } from 'vuex-class';
-  import { Tab } from '../types';
-  import ApWarningBlock from './ApWarningBlock.vue';
-  import CalculationConfig from './CalculationConfig.vue';
-  import CalculationMatrix from './CalculationMatrix.vue';
-  import CalculationTab from './CalculationTab.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Mutation, State } from 'vuex-class';
+import { Tab } from '../types';
+import ApWarningBlock from './ApWarningBlock.vue';
+import CalculationConfig from './CalculationConfig.vue';
+import CalculationMatrix from './CalculationMatrix.vue';
+import CalculationTab from './CalculationTab.vue';
 
-  @Component({
+@Component({
   components: {
     ApWarningBlock,
     CalculationTab,

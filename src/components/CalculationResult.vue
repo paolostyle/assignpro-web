@@ -32,11 +32,11 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
-  import { CalculationResults, CalculationType } from '../types';
-  import ApWarningBlock from './ApWarningBlock.vue';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { CalculationResults, CalculationType } from '../types';
+import ApWarningBlock from './ApWarningBlock.vue';
 
-  @Component({
+@Component({
   components: { ApWarningBlock }
 })
 export default class CalculationResult extends Vue {

@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
-  import TheContent from './components/TheContent.vue';
-  import TheFooter from './components/TheFooter.vue';
-  import TheNavbar from './components/TheNavbar.vue';
-  import { configureAxios, initializeFirebase } from './configs/app-config';
+import { Component, Vue } from 'vue-property-decorator';
+import TheContent from './components/TheContent.vue';
+import TheFooter from './components/TheFooter.vue';
+import TheNavbar from './components/TheNavbar.vue';
+import { configureAxios, initializeFirebase } from './configs/app-config';
 
-  @Component({
+@Component({
   components: {
     TheNavbar,
     TheContent,

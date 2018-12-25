@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
-  import TheHistory from './TheHistory.vue';
-  import TheTabs from './TheTabs.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import TheHistory from './TheHistory.vue';
+import TheTabs from './TheTabs.vue';
 
-  @Component({
+@Component({
   components: { TheHistory, TheTabs }
 })
 export default class TheContent extends Vue {}

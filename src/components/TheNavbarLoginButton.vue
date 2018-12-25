@@ -34,14 +34,14 @@
 </template>
 
 <script lang="ts">
-  import { UserCredential } from '@firebase/auth-types';
-  import { SnackbarConfig } from 'buefy/types/components';
-  import firebase from 'firebase/app';
-  import 'firebase/auth';
-  import { Component, Vue } from 'vue-property-decorator';
-  import { Action, State } from 'vuex-class';
+import { UserCredential } from '@firebase/auth-types';
+import { SnackbarConfig } from 'buefy/types/components';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, State } from 'vuex-class';
 
-  @Component
+@Component
 export default class TheNavbarLoginButton extends Vue {
   userSpinner: boolean = true;
   @State user: any;

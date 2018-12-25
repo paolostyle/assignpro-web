@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
-  @Component
+@Component
 export default class TheFooter extends Vue {
   buildDate: string = WEBPACK_BUILD_DATE;
 }

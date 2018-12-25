@@ -21,10 +21,10 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-  import { Action, Getter } from 'vuex-class';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
 
-  @Component
+@Component
 export default class CalculationTab extends Vue {
   @Prop() id: number;
   @Action setTabProperty: (payload: { id: number; property: string; value: any }) => void;

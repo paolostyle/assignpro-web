@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-  @Component
+@Component
 export default class ApWarningBlock extends Vue {
   @Prop({ type: String, default: 'alert-circle-outline' }) icon: string;
 }

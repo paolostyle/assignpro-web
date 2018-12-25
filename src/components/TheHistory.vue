@@ -26,13 +26,13 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
-  import { Action, State } from 'vuex-class';
-  import { CalculatedTab } from '../types';
-  import ApTypeIcon from './ApTypeIcon.vue';
-  import ApWarningBlock from './ApWarningBlock.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, State } from 'vuex-class';
+import { CalculatedTab } from '../types';
+import ApTypeIcon from './ApTypeIcon.vue';
+import ApWarningBlock from './ApWarningBlock.vue';
 
-  @Component({
+@Component({
   components: { ApTypeIcon, ApWarningBlock }
 })
 export default class TheHistory extends Vue {

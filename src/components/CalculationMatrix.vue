@@ -3,16 +3,16 @@
 </template>
 
 <script lang="ts">
-  import HotTable from '@handsontable/vue';
-  import Handsontable, { GridSettings } from 'handsontable';
-  import numbro from 'numbro';
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-  import { Action, Getter } from 'vuex-class';
-  import { MaxLengthCellEditor } from '../configs/handsontable';
-  import { Helpers } from '../helpers';
-  import { CalculationResults, CalculationType, CellValidation, DataChanges, Tab } from '../types';
+import HotTable from '@handsontable/vue';
+import Handsontable, { GridSettings } from 'handsontable';
+import numbro from 'numbro';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { MaxLengthCellEditor } from '../configs/handsontable';
+import { Helpers } from '../helpers';
+import { CalculationResults, CalculationType, CellValidation, DataChanges, Tab } from '../types';
 
-  @Component({
+@Component({
   components: {
     HotTable
   }

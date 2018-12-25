@@ -47,15 +47,15 @@
 </template>
 
 <script lang="ts">
-  import { SnackbarConfig } from 'buefy/types/components';
-  import Vue from 'vue';
-  import { Component, Prop } from 'vue-property-decorator';
-  import { Action, Getter } from 'vuex-class';
-  import { CalculationResults, CalculationType, Tab, TableCoordinate, TabProperty } from '../types';
-  import CalculationConfigTypePicker from './CalculationConfigTypePicker.vue';
-  import CalculationResult from './CalculationResult.vue';
+import { SnackbarConfig } from 'buefy/types/components';
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { CalculationResults, CalculationType, Tab, TableCoordinate, TabProperty } from '../types';
+import CalculationConfigTypePicker from './CalculationConfigTypePicker.vue';
+import CalculationResult from './CalculationResult.vue';
 
-  @Component({
+@Component({
   components: { CalculationResult, CalculationConfigTypePicker }
 })
 export default class CalculationConfig extends Vue {

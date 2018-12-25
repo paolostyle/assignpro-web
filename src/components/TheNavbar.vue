@@ -28,10 +28,10 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
-  import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
 
-  @Component({
+@Component({
   components: {
     TheNavbarLoginButton
   }
