@@ -17,9 +17,8 @@ export function initializeFirebase() {
 }
 
 export function configureAxios() {
-  if (process.env.NODE_ENV === 'development') {
-    axios.defaults.baseURL = 'http://localhost:5000';
-  }
+  axios.defaults.baseURL =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://api.assignpro.ml';
 
   axios.interceptors.response.use(
     response => response,

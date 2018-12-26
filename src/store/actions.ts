@@ -71,7 +71,7 @@ export const storeActions = {
 
     commit('setLoadingSpinner', true);
     return axios
-      .post('/api/solve', requestData)
+      .post('/solve', requestData)
       .then(response => response.data)
       .then(results => {
         commit('setLoadingSpinner', false);
