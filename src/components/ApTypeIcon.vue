@@ -30,24 +30,24 @@ export default class ApTypeIcon extends Vue {
     switch (this.type) {
       case CalculationType.Sum:
         return {
-          text: 'Sumacyjny',
+          text: this.$i18n.t('typeSum'),
           icon: 'sigma',
           secIcon: 'arrow-down'
         };
       case CalculationType.SumMax:
         return {
-          text: 'Sumacyjny (maks.)',
+          text: this.$i18n.t('typeSumMax'),
           icon: 'sigma',
           secIcon: 'arrow-up'
         };
       case CalculationType.Bottleneck:
         return {
-          text: 'Progowy',
+          text: this.$i18n.t('typeBottleneck'),
           icon: 'chart-gantt'
         };
       case CalculationType.Simple:
         return {
-          text: 'Prosty',
+          text: this.$i18n.t('typeSimple'),
           icon: 'checkbox-multiple-marked'
         };
       default:

@@ -1,3 +1,10 @@
+<i18n>
+  {
+    "pl": { "noHistory": "Brak obliczeń w historii." },
+    "en": { "noHistory": "No calculations in history." }
+  }
+</i18n>
+
 <template>
   <b-table
     default-sort="date"
@@ -9,18 +16,20 @@
     @click="row => addExistingTab(row)"
   >
     <template slot-scope="scope">
-      <b-table-column field="type" label="Typ" sortable>
+      <b-table-column field="type" :label="$t('type')" sortable>
         <ap-type-icon :type="scope.row.type" :tooltip="true"> </ap-type-icon>
       </b-table-column>
 
-      <b-table-column field="name" label="Nazwa" sortable> {{ scope.row.name }} </b-table-column>
+      <b-table-column field="name" :label="$t('name')" sortable>
+        {{ scope.row.name }}
+      </b-table-column>
 
-      <b-table-column field="date" label="Data" sortable :custom-sort="dateSorting">
+      <b-table-column field="date" :label="$t('date')" sortable :custom-sort="dateSorting">
         {{ new Date(scope.row.date).toLocaleString() }}
       </b-table-column>
     </template>
     <template slot="empty">
-      <ap-warning-block> Brak obliczeń w historii. </ap-warning-block>
+      <ap-warning-block>{{ $t('noHistory') }}</ap-warning-block>
     </template>
   </b-table>
 </template>

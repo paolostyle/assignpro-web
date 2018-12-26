@@ -49,6 +49,7 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2",
     "vue-cli-plugin-i18n": "^0.5.1",
+    "vue-cli-plugin-webpack-bundle-analyzer": "^1.2.0",
     "vue-template-compiler": "^2.5.21"
   },
   "prettier": {
@@ -88,9 +89,6 @@
   "bugs": {
     "url": "https://github.com/paolostyle/assignpro/issues"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "homepage": "https://github.com/paolostyle/assignpro#readme",
   "keywords": [
     "assignpro",
@@ -101,16 +99,6 @@
     "sass"
   ],
   "license": "ISC",
-  "lint-staged": {
-    "*.ts": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/paolostyle/assignpro.git"

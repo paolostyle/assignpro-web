@@ -9,15 +9,26 @@ import { store } from './store/store';
 Vue.use(VueIntro);
 Vue.use(VTooltip);
 Vue.use(Buefy, {
-  defaultDialogCancelText: 'Anuluj',
+  defaultDialogCancelText: i18n.tc('cancel'),
   defaultNoticeQueue: false
 });
 
-new Vue({
+const app = {
   store,
   i18n,
   render: h => h(App)
-}).$mount('#app');
+};
+
+Object.defineProperty(Vue.prototype, '$locale', {
+  get() {
+    return app.i18n.locale;
+  },
+  set(locale) {
+    app.i18n.locale = locale;
+  }
+});
+
+new Vue(app).$mount('#app');
 
 if (module.hot) {
   module.hot.accept();

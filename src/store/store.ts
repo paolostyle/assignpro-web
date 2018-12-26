@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import i18n from '../i18n';
 import { Helpers as H } from '../helpers';
 import { AppState, CalculatedTab, Tab } from '../types';
 import { storeActions as actions } from './actions';
@@ -12,7 +13,7 @@ const state: AppState = {
   activeTab: 1,
   tabCounter: 2,
   spinnerActive: false,
-  tabs: [H.emptyTab(1, 'Obliczenia 1')] as Tab[],
+  tabs: [H.emptyTab(1, i18n.tc('defaultCalc'))] as Tab[],
   history: [] as CalculatedTab[],
   historyCounter: 1,
   user: null

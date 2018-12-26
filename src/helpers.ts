@@ -111,8 +111,6 @@ export class Helpers {
       }
     });
 
-    console.log(tasksIndexes, workersIndexes);
-
     if (workersIndexes.length >= 2 && tasksIndexes.length >= 2) {
       return tasksIndexes.concat(workersIndexes);
     } else if (workersIndexes.length >= 2 && tasksIndexes.length < 2) {

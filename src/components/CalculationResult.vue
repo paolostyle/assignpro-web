@@ -1,3 +1,26 @@
+<i18n>
+  {
+    "pl": {
+      "noResults": "Nie wykonano jeszcze żadnych obliczeń.",
+      "results": "Wyniki",
+      "resultsWithDate": "Wyniki ({date})",
+      "resultsOutdated": "Wyniki (nieaktualne)",
+      "numResultSum": "Suma",
+      "numResultBottleneck": "Wartość progowa",
+      "numResultSimple": "Przydzielonych zadań"
+    },
+    "en": {
+      "noResults": "No results so far.",
+      "results": "Results",
+      "resultsWithDate": "Results ({date})",
+      "resultsOutdated": "Results (outdated)",
+      "numResultSum": "Sum",
+      "numResultBottleneck": "Bottleneck cost",
+      "numResultSimple": "Assigned tasks"
+    }
+  }
+</i18n>
+
 <template>
   <b-field :label="fieldTitle">
     <section class="results">
@@ -12,21 +35,26 @@
           :perPage="5"
         >
           <template slot-scope="scope">
-            <b-table-column field="task" label="Zadanie" sortable centered>
+            <b-table-column field="task" :label="$t('task')" sortable centered>
               {{ scope.row.task }}
             </b-table-column>
 
-            <b-table-column field="worker" label="Pracownik" sortable centered>
+            <b-table-column field="worker" :label="$t('worker')" sortable centered>
               {{ scope.row.worker }}
             </b-table-column>
 
-            <b-table-column field="value" label="Wartość" sortable :visible="results.type !== 4">
+            <b-table-column
+              field="value"
+              :label="$t('value')"
+              sortable
+              :visible="results.type !== 4"
+            >
               {{ scope.row.value }}
             </b-table-column>
           </template>
         </b-table>
       </div>
-      <ap-warning-block v-else> Nie wykonano jeszcze żadnych obliczeń. </ap-warning-block>
+      <ap-warning-block v-else>{{ $t('noResults') }}</ap-warning-block>
     </section>
   </b-field>
 </template>
@@ -51,21 +79,27 @@ export default class CalculationResult extends Vue {
   }
 
   get fieldTitle() {
-    return this.results.upToDate === false
-      ? 'Wyniki (nieaktualne)'
-      : this.localeCalcDate
-      ? `Wyniki (${this.localeCalcDate})`
-      : 'Wyniki';
+    if (this.results.upToDate) {
+      if (this.localeCalcDate) {
+        return this.$i18n.t('resultsWithDate', {
+          date: this.localeCalcDate
+        });
+      } else {
+        return this.$i18n.t('results');
+      }
+    } else {
+      return this.$i18n.t('resultsOutdated');
+    }
   }
 
   get numResultText() {
     switch (this.results.type) {
       case CalculationType.Simple:
-        return 'Przydzielonych zadań';
+        return this.$i18n.t('numResultSimple');
       case CalculationType.Bottleneck:
-        return 'Wartość progowa';
+        return this.$i18n.t('numResultBottleneck');
       default:
-        return 'Suma';
+        return this.$i18n.t('numResultSum');
     }
   }
 

@@ -1,17 +1,28 @@
 <i18n>
-    {
-        "pl": {
-            "calculationType": "Typ obliczeń",
-            "actions": "Akcje",
-            "solve": "Rozwiąż",
-            "duplicate": "Duplikuj",
-            "changeName": "Zmień nazwę",
-            "newName": "Podaj nową nazwę:",
-            "validationErrors": "Nie można rozwiązać zadania, ponieważ wystąpiły błędy walidacji. Popraw błędy w komórkach: {errorsList} i spróbuj ponownie.",
-            "toSimple": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na prosty? Wprowadzone dane prawda/fałsz zostaną zamienione na jedynki i zera.",
-            "toNumeric": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? Wprowadzone dane numeryczne zostaną utracone i zostaną zamienione na wartości prawda/fałsz."
-        }
+  {
+    "pl": {
+      "calculationType": "Typ obliczeń",
+      "actions": "Akcje",
+      "solve": "Rozwiąż",
+      "duplicate": "Duplikuj zakł.",
+      "changeName": "Zmień nazwę",
+      "newName": "Podaj nową nazwę:",
+      "validationErrors": "Nie można rozwiązać zadania, ponieważ wystąpiły błędy walidacji. Popraw błędy w komórkach: {errorsList} i spróbuj ponownie.",
+      "toSimple": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na prosty? Wprowadzone dane numeryczne zostaną zamienione na wartości prawda/fałsz.",
+      "toNumeric": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? Wprowadzone dane prawda/fałsz zostaną zamienione na wartości 1/0."
+    },
+    "en": {
+      "calculationType": "Calculation type",
+      "actions": "Actions",
+      "solve": "Solve",
+      "duplicate": "Duplicate tab",
+      "changeName": "Change name",
+      "newName": "New name:",
+      "validationErrors": "Some validation errors occurred. Fix errors in cells: {errorsList} and try again.",
+      "toSimple": "Are you sure you want to change calculation type to Simple? Inputted numerical data will be changed to true/false values.",
+      "toNumeric": "Are you sure you want to change calculation type to numeric? Inputted true/false values will be changed to 1/0."
     }
+  }
 </i18n>
 
 <template>
@@ -25,7 +36,7 @@
           />
         </b-field>
         <b-field :label="$t('actions')">
-          <p class="control">
+          <p class="control action-buttons">
             <button class="button is-success" @click="solve()">
               <b-icon icon="calculator"></b-icon>
               <span>{{ $t('solve') }}</span>
@@ -179,5 +190,9 @@ export default class CalculationConfig extends Vue {
 <style lang="scss" scoped>
 .config-panel {
   padding: 1rem 0;
+}
+
+.action-buttons > button {
+  margin-right: 0.25rem;
 }
 </style>

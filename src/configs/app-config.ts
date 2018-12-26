@@ -5,7 +5,7 @@ import i18n from '../i18n';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCQdJpkdWfeJcF5mGlLbRRyJDATiBMd7nQ',
-  authDomain: 'assignpro-84859.firebaseapp.com',
+  authDomain: 'firebase.assignpro.ml',
   databaseURL: 'https://assignpro-84859.firebaseio.com',
   projectId: 'assignpro-84859'
 };

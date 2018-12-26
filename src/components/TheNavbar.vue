@@ -1,9 +1,14 @@
 <i18n>
-    {
-        "pl": {
-            "tutorial": "Tutorial"
-        }
+  {
+    "pl": {
+      "tutorial": "Tutorial",
+      "otherLang": "English"
+    },
+    "en": {
+      "tutorial": "Tutorial",
+      "otherLang": "Polski"
     }
+  }
 </i18n>
 
 <template>
@@ -16,6 +21,10 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
+          <a class="navbar-item" @click="changeLanguage()">
+            <b-icon icon="web"></b-icon>
+            {{ $t('otherLang') }}
+          </a>
           <a class="navbar-item" @click="launchTutorial()">
             <b-icon icon="book-open-variant"></b-icon>
             {{ $t('tutorial') }}
@@ -37,6 +46,14 @@ import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
   }
 })
 export default class TheNavbar extends Vue {
+  changeLanguage() {
+    if (this.$locale === 'pl') {
+      this.$locale = 'en';
+    } else {
+      this.$locale = 'pl';
+    }
+  }
+
   launchTutorial() {
     this.$intro().start();
   }

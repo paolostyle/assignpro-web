@@ -6,6 +6,18 @@
   "noResponse": "Nie otrzymano odpowiedzi z serwera. Spróbuj ponownie.",
   "serverError": "Serwer zwrócił błąd: {{error}}",
   "error": "Błąd: {{error}}",
+  "task": "Zadanie",
+  "value": "Wartość",
   "tasks": "Zadania",
-  "workers": "Pracownicy"
+  "worker": "Pracownik",
+  "workers": "Pracownicy",
+  "type": "Typ",
+  "date": "Data",
+  "name": "Nazwa",
+  "typeSum": "Sumacyjny",
+  "typeSumMax": "Sumacyjny (maks.)",
+  "typeBottleneck": "Progowy",
+  "typeSimple": "Prosty",
+  "confirmTabClosing": "Jesteś pewien, że chcesz zamknąć tę zakładkę? Dane zostaną utracone.",
+  "defaultCalc": "Obliczenie 1"
 }

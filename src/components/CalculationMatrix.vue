@@ -63,6 +63,12 @@ export default class CalculationMatrix extends Vue {
     return this.getTabResults(this.id);
   }
 
+  get cornerCell() {
+    return `<span class="tasks">${this.$i18n.t('tasks')}</span>
+      <span class="workers">${this.$i18n.t('workers')}</span>`;
+  }
+
+  @Watch('$locale')
   @Watch('id')
   @Watch('type')
   @Watch('results')
@@ -83,8 +89,7 @@ export default class CalculationMatrix extends Vue {
   private customRenderer() {
     let cornerCellRenderer = td => {
       td.classList.add('corner-cell');
-      td.innerHTML = `<span class="tasks">${this.$i18n.t('tasks')}</span>
-      <span class="workers">${this.$i18n.t('workers')}</span>`;
+      td.innerHTML = this.cornerCell;
     };
 
     let customCheckboxRenderer = td => {

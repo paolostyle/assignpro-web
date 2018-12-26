@@ -61,7 +61,7 @@ export default class CalculationTab extends Vue {
   confirmClosingTab() {
     if (!this.isFromHistory && this.tabHasData(this.id)) {
       this.$dialog.confirm({
-        message: 'Jesteś pewien, że chcesz zamknąć tę zakładkę? Dane zostaną utracone.',
+        message: this.$i18n.tc('confirmTabClosing'),
         onConfirm: () => this.closeTab(this.id)
       });
     } else {

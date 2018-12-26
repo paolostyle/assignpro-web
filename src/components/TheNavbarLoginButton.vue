@@ -1,23 +1,41 @@
 <i18n>
 {
-    "pl": {
-        "login": "Zaloguj z Google",
-        "logout": "Wyloguj: {user}",
-        "loading": "Sprawdzanie stanu zalogowania...",
-        "loginSuccess": "Pomyślnie zalogowano jako {name}.",
-        "loginFailed": "Logowanie nie powiodło się. {error}",
-        "logoutSuccess": "Pomyślnie wylogowano.",
-        "errors": {
-            "cancelledPopup": "W trakcie logowania zostało otwarte kolejne okienko logowania.",
-            "popupBlocked": {
-                "msg": "@:errors.popupBlocked.p1 @:errors.popupBlocked.p2",
-                "p1": "Okienko logowania zostało zablokowane przez przeglądarkę.",
-                "p2": "Upewnij się, że przeglądarka zezwala na otwieranie wyskakujących okienek."
-            },
-            "popupClosed": "Okienko logowania zostało zamknięte przed ukończeniem autoryzacji.",
-            "generic": "Kod błędu: {code}. Przekaż ten kod błędu autorowi aplikacji."
-        }
+  "pl": {
+    "login": "Zaloguj z Google",
+    "logout": "Wyloguj: {user}",
+    "loading": "Sprawdzanie stanu zalogowania...",
+    "loginSuccess": "Pomyślnie zalogowano jako {name}.",
+    "loginFailed": "Logowanie nie powiodło się. {error}",
+    "logoutSuccess": "Pomyślnie wylogowano.",
+    "errors": {
+      "cancelledPopup": "W trakcie logowania zostało otwarte kolejne okienko logowania.",
+      "popupBlocked": {
+          "msg": "@:errors.popupBlocked.p1 @:errors.popupBlocked.p2",
+          "p1": "Okienko logowania zostało zablokowane przez przeglądarkę.",
+          "p2": "Upewnij się, że przeglądarka zezwala na otwieranie wyskakujących okienek."
+      },
+      "popupClosed": "Okienko logowania zostało zamknięte przed ukończeniem autoryzacji.",
+      "generic": "Kod błędu: {code}. Przekaż ten kod błędu autorowi aplikacji."
     }
+  },
+  "en": {
+    "login": "Log in with Google",
+    "logout": "Log out: {user}",
+    "loading": "Checking logging in status...",
+    "loginSuccess": "Successfully logged in as {name}.",
+    "loginFailed": "Login failed. {error}",
+    "logoutSuccess": "Logged out successful.",
+    "errors": {
+      "cancelledPopup": "Another popup has been opened while logging in.",
+      "popupBlocked": {
+      "msg": "@:errors.popupBlocked.p1 @:errors.popupBlocked.p2",
+      "p1": "Log in pop up has been blocked by your browser.",
+      "p2": "Make sure your browser allows opening popups."
+    },
+    "popupClosed": "Login popup has been closed before finishing authorization",
+    "generic": "Error code: {code}. Send this error code to app developer."
+    }
+  }
 }
 </i18n>
 

@@ -1,11 +1,16 @@
 <i18n>
-    {
-        "pl": {
-            "no-tabs": "Brak otwartych zakładek. Utwórz nową, używając przycisku ",
-            "add-new-tab": "Podaj nazwę nowego obliczenia:",
-            "calculation": "Obliczenie {number}"
-        }
+  {
+    "pl": {
+      "no-tabs": "Brak otwartych zakładek. Utwórz nową, używając przycisku ",
+      "add-new-tab": "Podaj nazwę nowego obliczenia:",
+      "calculation": "Obliczenie {number}"
+    },
+    "en": {
+      "no-tabs": "No tabs opened. Create one using ",
+      "add-new-tab": "New calculation name:",
+      "calculation": "Calculation {number}"
     }
+  }
 </i18n>
 
 <template>
