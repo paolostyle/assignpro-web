@@ -25,6 +25,7 @@ Object.defineProperty(Vue.prototype, '$locale', {
   },
   set(locale) {
     app.i18n.locale = locale;
+    localStorage.setItem('locale', locale);
   }
 });
 
