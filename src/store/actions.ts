@@ -65,6 +65,12 @@ export const storeActions = {
       col
     });
   },
+  setHeadersValidationErrors({ commit, getters }, { id, validationErrors }) {
+    commit('setHeadersValidationErrors', {
+      index: getters.getTabIndex(id),
+      validationErrors
+    });
+  },
   sendData({ commit, getters, dispatch }, id) {
     let tab = getters.getTab(id);
     let requestData = H.prepareDataForSolver(tab.data, tab.type);

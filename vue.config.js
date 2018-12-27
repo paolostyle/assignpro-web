@@ -3,7 +3,6 @@ const { DefinePlugin, IgnorePlugin, ProvidePlugin } = require('webpack');
 
 module.exports = {
   configureWebpack: {
-    devtool: false,
     resolve: {
       alias: {
         moment: path.resolve(__dirname, 'node_modules/moment'),
@@ -30,5 +29,6 @@ module.exports = {
     webpackBundleAnalyzer: {
       openAnalyzer: false
     }
-  }
+  },
+  productionSourceMap: false
 };

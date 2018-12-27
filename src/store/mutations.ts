@@ -61,6 +61,12 @@ export const storeMutations = {
       state.tabs[index].validationErrors.push({ row, col });
     }
   },
+  setHeadersValidationErrors(state, { index, validationErrors }) {
+    const oldErrors = state.tabs[index].validationErrors;
+    state.tabs[index].validationErrors = oldErrors
+      .filter(({ row, col }) => row && col)
+      .concat(validationErrors);
+  },
   incrementHistoryCounter(state) {
     state.historyCounter++;
   },

@@ -48,9 +48,8 @@ test('data is prepared for solving', () => {
 test('detects duplicates', () => {
   let workers = ['a', 'b', 'a', 'c', 'd', 'e'];
   let tasks = ['z', 'x', 'x', 'c', 'a'];
-  let val = 'c';
 
-  let result = Helpers.detectDuplicates(val, tasks, workers);
+  let result = Helpers.detectDuplicates(tasks, workers);
   console.log(result);
   expect(true).toEqual(true);
 });

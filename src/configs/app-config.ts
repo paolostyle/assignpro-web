@@ -23,10 +23,10 @@ export function configureAxios() {
   axios.interceptors.response.use(
     response => response,
     error => {
-      let message = i18n.t('error', error.message);
+      let message = i18n.t('error', { error: error.message });
 
       if (error.response) {
-        message = i18n.t('serverError', error.response.status);
+        message = i18n.t('serverError', { error: error.response.status });
       } else if (error.request) {
         message = i18n.t('noResponse');
       }

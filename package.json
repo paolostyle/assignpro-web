@@ -18,6 +18,7 @@
     "firebase": "^5.7.1",
     "handsontable": "^6.2.2",
     "intro.js": "^2.9.3",
+    "lodash-es": "^4.17.11",
     "mdi": "^2.2.43",
     "numbro": "^2.1.1",
     "v-tooltip": "^2.0.0-rc.33",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@types/jest": "^23.3.10",
+    "@types/lodash-es": "^4.17.1",
     "@types/webpack": "^4.4.22",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-e2e-cypress": "^3.2.0",

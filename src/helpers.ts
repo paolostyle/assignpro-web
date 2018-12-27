@@ -1,3 +1,4 @@
+import { omitBy, set, flatten } from 'lodash-es';
 import { CalculationType, Tab, TableCoordinate } from './types';
 
 export class Helpers {
@@ -73,11 +74,9 @@ export class Helpers {
   }
 
   static trimArray(array: any[]) {
-    let len = array.length;
-    let start;
+    const len = array.length;
+    const start = array.findIndex(el => !!el);
     let end;
-
-    start = array.findIndex(el => !!el);
 
     for (let i = len - 1; i >= 0; i--) {
       if (array[i]) {
@@ -89,36 +88,21 @@ export class Helpers {
     return array.slice(start, end);
   }
 
-  static detectDuplicates(newElement: string, tasks: string[], workers: string[]) {
-    let tasksIndexes: TableCoordinate[] = [];
-    let workersIndexes: TableCoordinate[] = [];
+  static findDuplicates(array: any[]) {
+    const groupedValues = omitBy(
+      array.reduce(
+        (total, val, idx) => (val ? set(total, val, (total[val] || []).concat([idx])) : total),
+        {}
+      ),
+      (v: any[]) => v.length <= 1
+    );
 
-    tasks.forEach((task, index) => {
-      if (newElement === task) {
-        tasksIndexes.push({
-          row: 0,
-          col: index
-        });
-      }
-    });
+    return flatten(Object.values(groupedValues));
+  }
 
-    workers.forEach((worker, index) => {
-      if (newElement === worker) {
-        workersIndexes.push({
-          row: index,
-          col: 0
-        });
-      }
-    });
-
-    if (workersIndexes.length >= 2 && tasksIndexes.length >= 2) {
-      return tasksIndexes.concat(workersIndexes);
-    } else if (workersIndexes.length >= 2 && tasksIndexes.length < 2) {
-      return workersIndexes;
-    } else if (workersIndexes.length < 2 && tasksIndexes.length >= 2) {
-      return tasksIndexes;
-    } else {
-      return [];
-    }
+  static detectDuplicates(tasks: string[], workers: string[]) {
+    const tasksDuplicates = this.findDuplicates(tasks).map(col => ({ row: 0, col }));
+    const workersDuplicates = this.findDuplicates(workers).map(row => ({ row, col: 0 }));
+    return tasksDuplicates.concat(workersDuplicates);
   }
 }
