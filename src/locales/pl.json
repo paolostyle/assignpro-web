@@ -19,5 +19,7 @@
   "typeBottleneck": "Progowy",
   "typeSimple": "Prosty",
   "confirmTabClosing": "Jesteś pewien, że chcesz zamknąć tę zakładkę? Dane zostaną utracone.",
-  "defaultCalc": "Obliczenie 1"
+  "defaultCalc": "Obliczenie 1",
+  "credits": "Projekt zrealizowany jako część pracy inżynierskiej na {0} pod opieką dr inż. Mariusza Kalety.",
+  "faculty": "Wydziale Elektroniki i Technik Informacyjnych Politechniki Warszawskiej"
 }

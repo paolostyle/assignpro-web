@@ -19,5 +19,7 @@
   "typeBottleneck": "Bottleneck",
   "typeSimple": "Simple",
   "confirmTabClosing": "Are you sure you want to close the tab? Data will be lost.",
-  "defaultCalc": "Calculation 1"
+  "defaultCalc": "Calculation 1",
+  "credits": "Project realized as a part of BSc thesis at {0} under supervision of Dr. Mariusz Kaleta.",
+  "faculty": "Warsaw University of Technology, Faculty of Electronics and Information Technology"
 }

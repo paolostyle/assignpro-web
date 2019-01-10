@@ -27,16 +27,17 @@ export const storeActions = {
 
     // closed active tab
     if (state.activeTab === id) {
+      let newTabIndex = 0;
+
       if (index > 0) {
         // closed non-first tab
-        commit('setActiveTab', state.tabs[index - 1].id); // so set to previous tab
+        newTabIndex = state.tabs[index - 1].id; // so set to previous tab
       } else if (state.tabs[0]) {
         // there is a new first tab (so closed first tab)
-        commit('setActiveTab', state.tabs[0].id); // so set to new first tab
-      } else {
-        // closed the only tab
-        commit('setActiveTab', 0);
+        newTabIndex = state.tabs[0].id; // so set to new first tab
       }
+
+      commit('setActiveTab', newTabIndex);
     }
   },
   cloneTab({ commit, getters, state }, id) {
