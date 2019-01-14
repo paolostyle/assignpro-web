@@ -6,7 +6,7 @@
       "typeBottleneckDesc": "Przydział minimalizujący koszt najdroższego zadania",
       "typeSimpleDesc": "Przydział możliwie największej liczby zadań"
     },
-    "pl": {
+    "en": {
       "typeSumDesc": "Minimize sum of costs",
       "typeSumMaxDesc": "Maximize sum of costs",
       "typeBottleneckDesc": "Minimize cost of the most expensive task",

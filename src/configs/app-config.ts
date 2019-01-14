@@ -17,13 +17,12 @@ export function initializeFirebase() {
 }
 
 export function configureAxios() {
-  axios.defaults.baseURL =
-    process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://api.assignpro.ml';
+  axios.defaults.baseURL = 'https://api.assignpro.ml';
 
   axios.interceptors.response.use(
     response => response,
     error => {
-      let message = i18n.t('error', { error: error.message });
+      let message = i18n.t('error', { error: i18n.t(`api_${error.message}`) });
 
       if (error.response) {
         message = i18n.t('serverError', { error: error.response.status });

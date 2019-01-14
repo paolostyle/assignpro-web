@@ -9,6 +9,11 @@ export interface Payload {
   id: number;
 }
 
+export interface UserData {
+  displayName: string;
+  uid: string;
+}
+
 export interface AppState {
   spinnerActive: boolean;
   activeTab: number;
@@ -16,7 +21,7 @@ export interface AppState {
   tabs: Tab[];
   history: CalculatedTab[];
   historyCounter: number;
-  user: any;
+  user: UserData | null;
 }
 
 export interface Tab {
@@ -24,7 +29,7 @@ export interface Tab {
   historyId?: number;
   name: string;
   type: CalculationType;
-  data: any[][];
+  data: Array<Array<number | boolean | null>>;
   validationErrors: TableCoordinate[];
   assignmentMap: TableCoordinate[];
   results: CalculationResults;

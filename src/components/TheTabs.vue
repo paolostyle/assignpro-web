@@ -1,12 +1,12 @@
 <i18n>
   {
     "pl": {
-      "no-tabs": "Brak otwartych zakładek. Utwórz nową, używając przycisku ",
+      "no-tabs": "Brak otwartych zakładek. Utwórz nową, używając przycisku {0}.",
       "add-new-tab": "Podaj nazwę nowego obliczenia:",
       "calculation": "Obliczenie {number}"
     },
     "en": {
-      "no-tabs": "No tabs opened. Create one using ",
+      "no-tabs": "No tabs opened. Create one using {0} button.",
       "add-new-tab": "New calculation name:",
       "calculation": "Calculation {number}"
     }
@@ -33,8 +33,12 @@
       <calculation-matrix :id="activeTab" />
       <calculation-config :id="activeTab" />
     </div>
-    <ap-warning-block v-else> {{ $t('no-tabs') }} <i class="mdi mdi-plus"></i>. </ap-warning-block>
-    <b-loading :active.sync="spinnerActive" :is-full-page="false"> </b-loading>
+    <ap-warning-block v-else>
+      <i18n path="no-tabs">
+        <i class="mdi mdi-plus"></i>
+      </i18n>
+    </ap-warning-block>
+    <b-loading :active.sync="spinnerActive" :is-full-page="false"></b-loading>
   </div>
 </template>
 

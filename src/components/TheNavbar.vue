@@ -21,14 +21,12 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
-          <a class="navbar-item" @click="changeLanguage()">
-            <b-icon icon="web"></b-icon>
+          <b-navbar-item @click="changeLanguage()" icon="web">
             {{ $t('otherLang') }}
-          </a>
-          <a class="navbar-item" @click="launchTutorial()">
-            <b-icon icon="book-open-variant"></b-icon>
+          </b-navbar-item>
+          <b-navbar-item icon="book-open-variant" @click="launchTutorial()">
             {{ $t('tutorial') }}
-          </a>
+          </b-navbar-item>
           <the-navbar-login-button />
         </div>
       </div>
@@ -38,10 +36,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import BNavbarItem from './bulma/BNavbarItem.vue';
 import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
 
 @Component({
   components: {
+    BNavbarItem,
     TheNavbarLoginButton
   }
 })

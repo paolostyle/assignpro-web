@@ -40,15 +40,15 @@
 </i18n>
 
 <template>
-  <div class="navbar-item" v-if="userSpinner">
-    <b-icon icon="loading"></b-icon> {{ $t('loading') }}
-  </div>
-  <a class="navbar-item" v-else-if="!userSpinner && !user" @click="signIn()">
-    <b-icon icon="login"></b-icon> {{ $t('login') }}
-  </a>
-  <a class="navbar-item" v-else-if="!userSpinner && user" @click="signOut()">
-    <b-icon icon="logout"></b-icon> {{ $t('logout', { user: user.displayName }) }}
-  </a>
+  <b-navbar-item icon="loading" block v-if="userSpinner">
+    {{ $t('loading') }}
+  </b-navbar-item>
+  <b-navbar-item @click="signIn()" icon="login" v-else-if="!userSpinner && !user">
+    {{ $t('login') }}
+  </b-navbar-item>
+  <b-navbar-item @click="signOut()" icon="logout" v-else-if="!userSpinner && user">
+    {{ $t('logout', { user: user.displayName }) }}
+  </b-navbar-item>
 </template>
 
 <script lang="ts">
@@ -58,8 +58,11 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
+import BNavbarItem from './bulma/BNavbarItem.vue';
 
-@Component
+@Component({
+  components: { BNavbarItem }
+})
 export default class TheNavbarLoginButton extends Vue {
   userSpinner: boolean = true;
   @State user: any;
