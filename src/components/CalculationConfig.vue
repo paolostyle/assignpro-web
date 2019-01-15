@@ -37,15 +37,15 @@
         </b-field>
         <b-field :label="$t('actions')">
           <p class="control action-buttons">
-            <button class="button is-success" @click="solve()">
+            <button class="button is-success solve-button" @click="solve()">
               <b-icon icon="calculator"></b-icon>
               <span>{{ $t('solve') }}</span>
             </button>
-            <button class="button is-primary is-outlined" @click="cloneTab(id)">
+            <button class="button is-primary is-outlined duplicate-button" @click="cloneTab(id)">
               <b-icon icon="content-duplicate"></b-icon>
               <span>{{ $t('duplicate') }}</span>
             </button>
-            <button class="button is-primary is-outlined" @click="changeTabName()">
+            <button class="button is-primary is-outlined rename-button" @click="changeTabName()">
               <b-icon icon="rename-box"></b-icon>
               <span>{{ $t('changeName') }}</span>
             </button>
@@ -151,13 +151,13 @@ export default class CalculationConfig extends Vue {
       this.sendData(this.id)
         .then(results => {
           this.$snackbar.open({
-            message: results.message,
+            message: this.$i18n.tc(`api_${results.message}`),
             type: 'is-success'
           });
         })
         .catch(error => {
           this.$snackbar.open({
-            message: error.message,
+            message: this.$i18n.tc(`api_${error.message}`),
             type: 'is-danger'
           });
         });

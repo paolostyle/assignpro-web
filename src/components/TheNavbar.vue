@@ -18,10 +18,20 @@
         <a class="navbar-item has-text-black">
           <h4 class="brand title is-4">Assign<span class="has-text-info">Pro</span></h4>
         </a>
+        <a
+          role="button"
+          :class="['navbar-burger burger', { 'is-active': menuOpen }]"
+          aria-label="menu"
+          @click="toggleMenu()"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-      <div class="navbar-menu">
+      <div :class="['navbar-menu', { 'is-active': menuOpen }]">
         <div class="navbar-end">
-          <b-navbar-item @click="changeLanguage()" icon="web">
+          <b-navbar-item @click="changeLanguage()" icon="web" class="change-language-button">
             {{ $t('otherLang') }}
           </b-navbar-item>
           <b-navbar-item icon="book-open-variant" @click="launchTutorial()">
@@ -46,6 +56,8 @@ import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
   }
 })
 export default class TheNavbar extends Vue {
+  menuOpen: boolean = false;
+
   changeLanguage() {
     if (this.$locale === 'pl') {
       this.$locale = 'en';
@@ -56,6 +68,10 @@ export default class TheNavbar extends Vue {
 
   launchTutorial() {
     this.$intro().start();
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen
   }
 }
 </script>
