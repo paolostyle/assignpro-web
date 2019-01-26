@@ -88,7 +88,7 @@ export const storeActions = {
       })
       .catch(error => {
         commit('setLoadingSpinner', false);
-        return error;
+        return Promise.reject(error);
       });
   },
   saveResults({ commit, getters }, { id, results }) {

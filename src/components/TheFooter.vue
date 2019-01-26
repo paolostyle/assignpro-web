@@ -33,18 +33,18 @@ export default class TheFooter extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .footer {
-    padding: 2rem;
-    margin-top: 3rem;
-  }
+.footer {
+  padding: 2rem;
+  margin-top: 3rem;
+}
 
-  .cols-container {
-    display: flex;
-    justify-content: space-between;
-  }
+.cols-container {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .credits {
-    font-size: 0.75rem;
-    max-width: 16.5rem;
-  }
+.credits {
+  font-size: 0.75rem;
+  max-width: 16.5rem;
+}
 </style>

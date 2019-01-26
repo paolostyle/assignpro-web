@@ -5,6 +5,7 @@
   "author": "Paweł Dąbrowski <dabrowskip9@gmail.com>",
   "scripts": {
     "build": "vue-cli-service build",
+    "build:ofline": "vue-cli-service build --mode offline",
     "lint": "vue-cli-service lint",
     "format": "prettier src/**/*.* --write",
     "start": "vue-cli-service serve",
@@ -45,11 +46,10 @@
     "babel-jest": "^23.6.0",
     "lint-staged": "^7.3.0",
     "node-sass": "^4.11.0",
-    "prettier": "1.15.3",
+    "prettier": "1.16.1",
     "sass-loader": "^7.1.0",
     "ts-jest": "^23.10.5",
     "tslint-config-prettier": "^1.17.0",
-    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2",
     "vue-cli-plugin-i18n": "^0.5.1",
     "vue-cli-plugin-webpack-bundle-analyzer": "^1.2.0",
@@ -97,6 +97,20 @@
         "babelConfig": true
       }
     }
+  },
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "prettier --write",
+      "yarn lint",
+      "git add"
+    ],
+    "*.{scss,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
   "bugs": {
     "url": "https://github.com/paolostyle/assignpro/issues"

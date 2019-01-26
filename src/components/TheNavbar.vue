@@ -71,7 +71,7 @@ export default class TheNavbar extends Vue {
   }
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen
+    this.menuOpen = !this.menuOpen;
   }
 }
 </script>

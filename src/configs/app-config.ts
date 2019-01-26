@@ -1,6 +1,7 @@
 import axios from 'axios';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { get } from 'lodash-es';
 import i18n from '../i18n';
 
 const firebaseConfig = {
@@ -17,16 +18,21 @@ export function initializeFirebase() {
 }
 
 export function configureAxios() {
-  axios.defaults.baseURL = 'https://api.assignpro.ml';
+  axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
   axios.interceptors.response.use(
     response => response,
     error => {
-      let message = i18n.t('error', { error: i18n.t(`api_${error.message}`) });
+      let message;
 
-      if (error.response) {
+      if (get(error, 'response.data.message') && get(error, 'response.data.calculationDate')) {
+        message = i18n.t('error', { error: i18n.t(`api_${error.response.data.message}`) });
+      } else if (
+        get(error, 'response.data.message') &&
+        !get(error, 'response.data.calculationDate')
+      ) {
         message = i18n.t('serverError', { error: error.response.status });
-      } else if (error.request) {
+      } else {
         message = i18n.t('noResponse');
       }
 

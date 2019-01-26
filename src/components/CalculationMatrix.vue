@@ -10,7 +10,14 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import { MaxLengthCellEditor } from '../configs/handsontable';
 import { Helpers } from '../helpers';
-import { CalculationResults, CalculationType, CellValidation, DataChanges, Tab, TableCoordinate } from '../types';
+import {
+  CalculationResults,
+  CalculationType,
+  CellValidation,
+  DataChanges,
+  Tab,
+  TableCoordinate
+} from '../types';
 
 @Component({
   components: {
@@ -26,7 +33,10 @@ export default class CalculationMatrix extends Vue {
   @Getter getTabWorkers: (id) => string[];
   @Action updateTabData: (payload: DataChanges) => void;
   @Action updateValidationErrors: (payload: CellValidation) => void;
-  @Action setHeadersValidationErrors: (payload: { id: number, validationErrors: TableCoordinate[] }) => void;
+  @Action setHeadersValidationErrors: (payload: {
+    id: number;
+    validationErrors: TableCoordinate[];
+  }) => void;
   tableSettings: GridSettings;
   root: string;
 
@@ -190,7 +200,7 @@ export default class CalculationMatrix extends Vue {
               this.getTabTasks(this.id),
               this.getTabWorkers(this.id)
             )
-          })
+          });
         }
       }
     };

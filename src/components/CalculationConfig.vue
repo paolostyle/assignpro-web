@@ -155,9 +155,9 @@ export default class CalculationConfig extends Vue {
             type: 'is-success'
           });
         })
-        .catch(error => {
+        .catch(({ message }) => {
           this.$snackbar.open({
-            message: this.$i18n.tc(`api_${error.message}`),
+            message,
             type: 'is-danger'
           });
         });
