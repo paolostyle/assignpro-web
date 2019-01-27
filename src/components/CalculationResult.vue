@@ -7,7 +7,8 @@
       "resultsOutdated": "Wyniki (nieaktualne)",
       "numResultSum": "Suma",
       "numResultBottleneck": "Wartość progowa",
-      "numResultSimple": "Przydzielonych zadań"
+      "numResultSimple": "Przydzielonych zadań",
+      "tutorialS6": "Tutaj przedstawiony jest odpowiedni przydział dla problemu minimalizacji kosztów. 'Suma' oznacza całkowity koszt naszego remontu."
     },
     "en": {
       "noResults": "No results so far.",
@@ -16,14 +17,21 @@
       "resultsOutdated": "Results (outdated)",
       "numResultSum": "Sum",
       "numResultBottleneck": "Bottleneck cost",
-      "numResultSimple": "Assigned tasks"
+      "numResultSimple": "Assigned tasks",
+      "tutorialS6": "This is an assignment that guarantees lowest cost of the renovation, which equals value in 'Sum' field."
     }
   }
 </i18n>
 
 <template>
   <b-field :label="fieldTitle">
-    <section class="results">
+    <section
+      class="results"
+      v-intro="$t('tutorialS6')"
+      v-intro-step="6"
+      v-intro-tooltip-class="'v-intro-500'"
+      v-intro-position="'top'"
+    >
       <div v-if="hasResults">
         <strong>{{ numResultText }}</strong
         >: {{ results.numResult }}

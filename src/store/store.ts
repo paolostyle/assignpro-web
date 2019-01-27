@@ -16,7 +16,8 @@ const state: AppState = {
   tabs: [H.emptyTab(1, i18n.tc('defaultCalc'))] as Tab[],
   history: [] as CalculatedTab[],
   historyCounter: 1,
-  user: null
+  user: null,
+  tourStep: 1
 };
 
 export const store = new Vuex.Store({

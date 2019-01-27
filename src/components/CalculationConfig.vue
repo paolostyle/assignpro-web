@@ -9,7 +9,9 @@
       "newName": "Podaj nową nazwę:",
       "validationErrors": "Nie można rozwiązać zadania, ponieważ wystąpiły błędy walidacji. Popraw błędy w komórkach: {errorsList} i spróbuj ponownie.",
       "toSimple": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na prosty? Wprowadzone dane numeryczne zostaną zamienione na wartości prawda/fałsz.",
-      "toNumeric": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? Wprowadzone dane prawda/fałsz zostaną zamienione na wartości 1/0."
+      "toNumeric": "Czy jesteś pewien, że chcesz zmienić typ obliczeń na numeryczny? Wprowadzone dane prawda/fałsz zostaną zamienione na wartości 1/0.",
+      "tutorialS4": "Tutaj możesz wybrać typ obliczeń. Ponieważ w tym przykładzie zależy nam na jak najniższym koszcie, domyślny typ Sumacyjny jest odpowiedni i nie powinieneś go zmieniać.",
+      "tutorialS5": "Pozostało rozwiązanie tego problemu. Kliknij przycisk 'Rozwiąż' i przejdź do następnego kroku, aby zobaczyć wyniki."
     },
     "en": {
       "calculationType": "Calculation type",
@@ -20,7 +22,9 @@
       "newName": "New name:",
       "validationErrors": "Some validation errors occurred. Fix errors in cells: {errorsList} and try again.",
       "toSimple": "Are you sure you want to change calculation type to Simple? Inputted numerical data will be changed to true/false values.",
-      "toNumeric": "Are you sure you want to change calculation type to numeric? Inputted true/false values will be changed to 1/0."
+      "toNumeric": "Are you sure you want to change calculation type to numeric? Inputted true/false values will be changed to 1/0.",
+      "tutorialS4": "Here you can select calculation type - for our problem, 'Sum' type is the correct one, so you should not change it.",
+      "tutorialS5": "Click Solve and go to the next step to see the results."
     }
   }
 </i18n>
@@ -29,7 +33,13 @@
   <section class="config-panel">
     <div class="columns">
       <div class="column">
-        <b-field :label="$t('calculationType')">
+        <b-field
+          :label="$t('calculationType')"
+          v-intro="$t('tutorialS4')"
+          v-intro-step="4"
+          v-intro-tooltip-class="'v-intro-500'"
+          v-intro-position="'top'"
+        >
           <calculation-config-type-picker
             :value="type"
             @change="value => confirmTypeChange(value)"
@@ -37,7 +47,14 @@
         </b-field>
         <b-field :label="$t('actions')">
           <p class="control action-buttons">
-            <button class="button is-success solve-button" @click="solve()">
+            <button
+              class="button is-success solve-button"
+              @click="solve()"
+              v-intro="$t('tutorialS5')"
+              v-intro-step="5"
+              v-intro-tooltip-class="'v-intro-500'"
+              v-intro-position="'top'"
+            >
               <b-icon icon="calculator"></b-icon>
               <span>{{ $t('solve') }}</span>
             </button>

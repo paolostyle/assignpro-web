@@ -3,6 +3,9 @@ import { Helpers as H } from '../helpers';
 import { Tab, TableCoordinate } from '../types';
 
 export const storeMutations = {
+  setTourStep(state, step) {
+    state.tourStep = step;
+  },
   setLoadingSpinner(state, value) {
     state.spinnerActive = value;
   },

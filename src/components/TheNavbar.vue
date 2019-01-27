@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Mutation, State } from 'vuex-class';
 import BNavbarItem from './bulma/BNavbarItem.vue';
 import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
 
@@ -56,6 +57,8 @@ import TheNavbarLoginButton from './TheNavbarLoginButton.vue';
   }
 })
 export default class TheNavbar extends Vue {
+  @State tourStep: number;
+  @Mutation setTourStep: (value: number) => void;
   menuOpen: boolean = false;
 
   changeLanguage() {
@@ -67,7 +70,16 @@ export default class TheNavbar extends Vue {
   }
 
   launchTutorial() {
-    this.$intro().start();
+    const intro = this.$intro();
+    intro
+      .setOptions({
+        keyboardNavigation: false,
+        disableInteraction: true
+      })
+      .goToStepNumber(this.tourStep)
+      .start()
+      .onchange((el: Element) => this.setTourStep(parseInt(el.getAttribute('data-step'), 10)))
+      .oncomplete(() => this.setTourStep(1));
   }
 
   toggleMenu() {

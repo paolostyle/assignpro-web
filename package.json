@@ -5,7 +5,7 @@
   "author": "Paweł Dąbrowski <dabrowskip9@gmail.com>",
   "scripts": {
     "build": "vue-cli-service build",
-    "build:ofline": "vue-cli-service build --mode offline",
+    "build:offline": "vue-cli-service build --mode offline",
     "lint": "vue-cli-service lint",
     "format": "prettier src/**/*.* --write",
     "start": "vue-cli-service serve",

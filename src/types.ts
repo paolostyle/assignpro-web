@@ -22,6 +22,7 @@ export interface AppState {
   history: CalculatedTab[];
   historyCounter: number;
   user: UserData | null;
+  tourStep: number;
 }
 
 export interface Tab {
