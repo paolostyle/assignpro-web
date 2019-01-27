@@ -78,7 +78,9 @@ export default class TheNavbar extends Vue {
       })
       .goToStepNumber(this.tourStep)
       .start()
-      .onchange((el: Element) => this.setTourStep(parseInt(el.getAttribute('data-step'), 10)))
+      .onchange((el: Element) =>
+        this.setTourStep(parseInt(el.getAttribute('data-step') as string, 10))
+      )
       .oncomplete(() => this.setTourStep(1));
   }
 
